@@ -24,3 +24,7 @@
 		using it with JavaScript disabled!
 	</p>
 </div>
+
+<style lang="scss">
+	@import './styles.scss'
+</style>

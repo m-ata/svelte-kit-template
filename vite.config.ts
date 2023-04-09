@@ -3,7 +3,11 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	plugins: [sveltekit()],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
-	}
+	server: {
+		proxy: {
+		  "/token": "https://company.dev.fishreg.net",
+		  "/logout": "https://company.dev.fishreg.net",
+		  "/api/v1": "https://company.dev.fishreg.net",
+		},
+	  },
 });

@@ -1,39 +1,36 @@
 <script>
-  import { validateUserToken } from "$lib/functions/auth";
+  import { validateUserToken } from "$lib/utils/validateToken";
   import Header from "../components/Header/Header.svelte";
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
-
+  import { user } from "$lib/store/authStore";
   /**
-   * @type {string}
+   * @type {boolean | undefined}
    */
   let token;
 
   onMount(async () => {
-    // @ts-ignore
-    token = await validateUserToken();
+    console.log($user);
+    token = await validateUserToken($user);
   });
-  
-  const update = async() => {
-	// if (!token) {
-		// @ts-ignore
-		token = await validateUserToken();
-	// }
-  }
+
+  const update = async () => {
+    // @ts-ignore
+    token = await validateUserToken($user);
+  };
 
   afterUpdate(async () => {
-    
-    let someDependency = localStorage.getItem('auth-token');
+    let someDependency = localStorage.getItem("auth-token");
 
-	// @ts-ignore
-	$: someDependency, update();
-  })
+    // @ts-ignore
+    $: someDependency, update();
+  });
 </script>
 
 <div class="app">
-	{ #if token }
-		<Header />
-	{/if}
+  {#if $user.loggedIn}
+    <Header />
+  {/if}
   <main>
     <slot />
   </main>

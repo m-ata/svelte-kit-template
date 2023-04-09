@@ -1,13 +1,8 @@
 <script>
   import { page } from "$app/stores";
   import logo from "$lib/images/svelte-logo.svg";
-  import logout from "$lib/images/logout.svg";
-  import { goto } from "$app/navigation";
-
-  const handleLogout = () => {
-	localStorage.removeItem('auth-token');
-	goto('/login');
-  }
+  import logoutImg from "$lib/images/logout.svg";
+  import { logout } from "$lib/api/auth";
 </script>
 
 <header>
@@ -41,8 +36,8 @@
     </svg>
   </nav>
 
-  <button type="button" class="corner" on:click={handleLogout}>
-    <img src={logout} alt="Logout" />
+  <button type="button" class="corner" on:click={logout}>
+    <img src={logoutImg} alt="Logout" />
   </button>
 </header>
 

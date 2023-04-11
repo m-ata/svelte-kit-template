@@ -22,3 +22,11 @@ type BackendToken = {
     refresh_expires_in?: string;
     refresh_token?: string;
 }
+
+export type Toast = {
+    id?: number;
+    message: string;
+    type: 'success' | 'error' | 'warning';
+    dismissible: boolean;
+    timeout?: number;
+}

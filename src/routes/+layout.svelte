@@ -4,13 +4,24 @@
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
   import { user } from "$lib/store/authStore";
+  import { locale, waitLocale } from "svelte-i18n";
+  import { browser } from "$app/environment";
+  import "$lib/i18n";
+  import { dismissToast, toasts } from "$lib/store/toastStore";
+  import Toast from "../components/Toast/Toast.svelte";
+
+  export const load = async () => {
+    if (browser) {
+      locale.set(window.navigator.language);
+    }
+    await waitLocale();
+  };
   /**
    * @type {boolean | undefined}
    */
   let token;
 
   onMount(async () => {
-    console.log($user);
     token = await validateUserToken($user);
   });
 
@@ -26,6 +37,17 @@
     $: someDependency, update();
   });
 </script>
+
+{#if $toasts}
+  <div class="toast-container">
+    {#each $toasts.reverse() as toast (toast.id)}
+      <Toast
+        type={toast.type}
+        dismissible={toast.dismissible}
+        on:dismiss={() => dismissToast(toast.id)}>{toast.message}</Toast>
+    {/each}
+  </div>
+{/if}
 
 <div class="app">
   {#if $user.loggedIn}
@@ -43,6 +65,12 @@
 </div>
 
 <style>
+  .toast-container {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 999;
+  }
   .app {
     display: flex;
     flex-direction: column;

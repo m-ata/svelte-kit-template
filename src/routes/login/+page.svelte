@@ -2,6 +2,7 @@
   import welcome from "$lib/images/svelte-welcome.webp";
   import welcome_fallback from "$lib/images/svelte-welcome.png";
   import { loginFormSubmit } from "./login";
+  import { _ } from "svelte-i18n";
 </script>
 
 <svelte:head>
@@ -22,11 +23,11 @@
   <div class="card">
     <div class="card-content">
       <div class="card-title">
-        <h2>LOGIN</h2>
+        <h2> {$_("_page.login.loginButton")} </h2>
         <div class="underline-title" /> 
       </div>
       <form class="form" on:submit={loginFormSubmit}>
-        <label for="user-email" style="padding-top:13px"> &nbsp;Username </label>
+        <label for="user-email" style="padding-top:13px"> {$_("_page.login.field.username")} </label>
         <input
           class="form-content"
           type="text"
@@ -35,7 +36,7 @@
         />
         <div class="form-border" />
         <label for="user-password" style="padding-top:22px"
-          >&nbsp;Password
+          > {$_("_page.login.field.username")}
         </label>
         <input
           class="form-content"
@@ -45,10 +46,10 @@
         />
         <div class="form-border" />
         <a href="/about">
-          <legend class="forgot-pass">Forgot password?</legend>
+          <legend class="forgot-pass"> {$_("_page.login.label.forgetPassword")} </legend>
         </a>
-        <button class="submit-btn" type="submit" name="submit"> LOGIN</button>
-        <a href="/about" class="signup-link">Don't have account yet?</a>
+        <button class="submit-btn" type="submit" name="submit"> {$_("_page.login.loginButton")} </button>
+        <a href="/about" class="signup-link"> {$_("_page.login.label.signUpLink")} </a>
       </form>
     </div>
   </div>

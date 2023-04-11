@@ -1,26 +1,41 @@
 import { fetchToken } from "$lib/api/auth";
 import { goto } from "$app/navigation";
 import { user } from "$lib/store/authStore";
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import type { TokenPayload } from "$lib/types";
-export const loginErrorMessage = writable("");
-export const showLoginError = writable(false);
+import { addToast } from "$lib/store/toastStore";
+import { _ } from "svelte-i18n";
 
 // handling login with API service
 export const loginFormSubmit = async (event: any) => {
   event.preventDefault();
   const formData = new FormData(event.target);
   let json = Object.fromEntries(formData.entries());
-  try {
+  console.log('login')
+  try { 
     const token = await fetchToken(json as TokenPayload);
-    showLoginError.set(false);
     user.set({
       token: token,
       loggedIn: true,
     });
+    addToast({
+      message: get(_)("_page.login.success"),
+      type: "success",
+      dismissible: true,
+      // timeout: 3000,
+    });
+    setTimeout(() => addToast({
+      message: get(_)("_page.login.success"),
+      type: "error",
+      dismissible: true,
+    }), 2000);
     goto("/");
   } catch {
-    loginErrorMessage.set("Login Failed");
-    showLoginError.set(true);
+    addToast({
+      message: get(_)("_page.login.loginErrorMessage"),
+      type: "error",
+      dismissible: true,
+      timeout: 3000,
+    })
   }
 };

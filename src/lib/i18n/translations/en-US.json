@@ -1,0 +1,10 @@
+{
+	"_page.login.loginButton": "Login",
+	"_page.login.loginErrorMessage": "Login failed",
+	"_page.login.field.username": "Username",
+	"_page.login.field.password": "Password",
+	"_page.login.label.forgetPassword": "Forgot password?",
+	"_page.login.label.signUpLink": "Don't have account yet?",
+	"_page.login.success": "Login Successfully!",
+	"_component.logoutButton": "Logout"
+}

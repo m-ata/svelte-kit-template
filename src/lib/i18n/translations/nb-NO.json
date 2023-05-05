@@ -1,0 +1,10 @@
+{
+	"_page.login.loginButton": "Anmeldung",
+	"_page.login.loginErrorMessage": "Fehler bei der Anmeldung",
+	"_page.login.field.username": "Nutzername",
+	"_page.login.field.password": "Passwort",
+    "_page.login.label.forgetPassword": "Forgot password?",
+    "_page.login.label.signUpLink": "Har du ikke konto ennå?",
+    "_page.login.success": "Logg på vellykket!",
+	"_component.logoutButton": "Ausloggen"
+}

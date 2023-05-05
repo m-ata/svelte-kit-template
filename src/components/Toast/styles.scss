@@ -1,0 +1,49 @@
+article {
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  width: 20rem;
+  margin: 3px;
+
+  &.error {
+    background: #ca4a4a;
+    img {
+      width: 2em;
+      background: transparent;
+    }
+  }
+
+  &.success {
+    background: #25d525;
+    img {
+      width: 2em;
+      background: transparent;
+    }
+  }
+  
+  &.warning {
+    background: #cd9e3f;
+    img {
+      width: 2em;
+      background: transparent;
+    }
+  }
+
+  .text {
+    margin-left: 1rem;
+    font-size: 18px;
+  }
+
+  button {
+    background: transparent;
+    border: 0 none;
+    padding: 0;
+    margin: 0 0 0 auto;
+    cursor: pointer;
+    img {
+      width: 1.5em !important;
+    }
+  }
+}

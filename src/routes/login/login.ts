@@ -11,7 +11,6 @@ export const loginFormSubmit = async (event: any) => {
   event.preventDefault();
   const formData = new FormData(event.target);
   let json = Object.fromEntries(formData.entries());
-  console.log('login')
   try { 
     const token = await fetchToken(json as TokenPayload);
     user.set({
@@ -22,13 +21,8 @@ export const loginFormSubmit = async (event: any) => {
       message: get(_)("_page.login.success"),
       type: "success",
       dismissible: true,
-      // timeout: 3000,
+      timeout: 3000,
     });
-    setTimeout(() => addToast({
-      message: get(_)("_page.login.success"),
-      type: "error",
-      dismissible: true,
-    }), 2000);
     goto("/");
   } catch {
     addToast({

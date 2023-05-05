@@ -3,6 +3,8 @@ import { writable } from 'svelte/store'
 
 export const toasts = writable<Toast[]>([])
 
+export const MAX_TOAST = 5;
+
 export const dismissToast = (id?: number) => {
   toasts.update((all) => all.filter((t: Toast) => t.id !== id))
 }

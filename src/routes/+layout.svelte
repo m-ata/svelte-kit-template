@@ -7,7 +7,7 @@
   import { locale, waitLocale } from "svelte-i18n";
   import { browser } from "$app/environment";
   import "$lib/i18n";
-  import { dismissToast, toasts } from "$lib/store/toastStore";
+  import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
   import Toast from "../components/Toast/Toast.svelte";
 
   export const load = async () => {
@@ -40,11 +40,13 @@
 
 {#if $toasts}
   <div class="toast-container">
-    {#each $toasts.reverse() as toast (toast.id)}
+    {#each $toasts.reverse() as toast, i}
+      {#if i < MAX_TOAST}
       <Toast
         type={toast.type}
         dismissible={toast.dismissible}
         on:dismiss={() => dismissToast(toast.id)}>{toast.message}</Toast>
+        {/if}
     {/each}
   </div>
 {/if}

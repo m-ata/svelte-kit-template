@@ -31,7 +31,7 @@
   };
 
   afterUpdate(async () => {
-    let someDependency = localStorage.getItem("auth-token");
+    let someDependency = localStorage.getItem("auth");
 
     // @ts-ignore
     $: someDependency, update();

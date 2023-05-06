@@ -27,11 +27,17 @@ user.subscribe(data => {
     window?.localStorage.setItem("auth", JSON.stringify(data));
   }
 });
+
 if (browser) {
-  window?.addEventListener("storage", event => {
-    if (event.key === null) {
+  window?.addEventListener("storage", () => {
+    const auth = JSON.parse(window.localStorage.getItem('auth') || '');
+    if (!auth.loggedIn) {
       user.set(defaultValue);
       goto("/login");
+    }
+    if (auth.loggedIn) {
+      console.log(auth.loggedIn)
+      window.location.href = '/';
     }
   });
 }

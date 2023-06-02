@@ -36,7 +36,7 @@
         />
         <div class="form-border" />
         <label for="user-password" style="padding-top:22px"
-          > {$_("_page.login.field.username")}
+          > {$_("_page.login.field.password")}
         </label>
         <input
           class="form-content"

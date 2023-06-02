@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@skeletonlabs/skeleton": "^1.6.2",
 		"svelte-i18n": "^3.6.0"
 	}
 }

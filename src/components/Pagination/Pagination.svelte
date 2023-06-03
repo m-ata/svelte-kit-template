@@ -11,15 +11,19 @@
   let total = size / selectedItemsPerPage;
   let currentPage: number = 1;
 
-  const onItemChange = () => {
-
+  const onItemChange = (event: Event) => {
+    const target = event.target as HTMLSelectElement;
+    const value = Number(target.value);
+    handleItemChange(0, value);
+    selectedItemsPerPage = value;
+    total = size / selectedItemsPerPage;
   }
 </script>
 
 <div class="paginator-container">
   <div class="page-items">
     <span> {$_("_component.dataTable.pagination.itemsPerPage")} </span>
-    <select value={selectedItemsPerPage}>
+    <select value={selectedItemsPerPage} on:change={onItemChange}>
       {#each amount as item}
         <option value={item}> {item} </option>
       {/each}

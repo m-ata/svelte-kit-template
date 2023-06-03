@@ -2,7 +2,7 @@
   import { browser } from "$app/environment";
   import { tableA11y } from "@skeletonlabs/skeleton";
   import { _ } from "svelte-i18n";
-  import { onMount, afterUpdate } from "svelte";
+  import { onMount } from "svelte";
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import Pagination from "../Pagination/Pagination.svelte";
@@ -21,14 +21,14 @@
   });
 
   const handleFilterData = (offset: number, limit: number) => {
-    filteredData = data.splice(offset, limit);
+    filteredData = data?.slice(offset, limit);
   };
   // handling sort w.r.t column and sort type
   const handleSort = (field: string, type: string) => {
     type === "desc"
-      ? data.sort((a, b) => (a[field] < b[field] ? 1 : -1))
-      : data.sort((a, b) => (a[field] > b[field] ? 1 : -1));
-    data = [...data];
+      ? filteredData.sort((a, b) => (a[field] < b[field] ? 1 : -1))
+      : filteredData.sort((a, b) => (a[field] > b[field] ? 1 : -1));
+      filteredData = [...filteredData];
   };
 
   // reset all columns sort
@@ -40,8 +40,8 @@
     columns = [...columns];
   };
 
-  const handleItemChange = () => {
-    console.log('Item changed');
+  const handleItemChange = (offset: number, limit: number) => {
+    handleFilterData(offset, limit);
   };
 </script>
 

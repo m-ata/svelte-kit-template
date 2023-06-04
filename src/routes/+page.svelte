@@ -2,11 +2,13 @@
 	import Counter from '../components/Counter/Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { _ } from "svelte-i18n";
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>{$_("_page.home.title")}</title>
 	<meta name="description" content="Svelte demo app" />
+	<link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
 </svelte:head>
 
 <section>
@@ -17,12 +19,12 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-
-		to your new<br />SvelteKit app
+		<i class="mi mi-arrow-down"><span class="u-sr-only">Arrow down</span></i>
+		{$_("_page.home.yourNew")}<br />{$_("_page.home.app.svelteKit")}
 	</h1>
 
 	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
+		{$_("_page.home.try.edit")}   <strong>   {$_("_page.home.routes.page.path")}   </strong>
 	</h2>
 
 	<Counter />

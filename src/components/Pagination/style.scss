@@ -1,0 +1,27 @@
+.paginator-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  .page-items {
+    select {
+      min-width: 50px;
+      border-radius: 5px;
+      height: 24px;
+      width: 75px;
+      border: 1px solid #b3acac;
+    }
+  }
+
+  .item-count {
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .pagination {
+    i {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+  }
+}

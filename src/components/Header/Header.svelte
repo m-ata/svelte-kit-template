@@ -3,6 +3,7 @@
   import logo from "$lib/images/svelte-logo.svg";
   import logoutImg from "$lib/images/logout.svg";
   import { logout } from "$lib/api/auth";
+  import { _ } from "svelte-i18n";
 </script>
 
 <header>
@@ -18,18 +19,15 @@
     </svg>
     <ul>
       <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
-        <a href="/">Home</a>
+        <a href="/">{$_("_page.home.title")}</a>
       </li>
-      <li aria-current={$page.url.pathname === "/about" ? "page" : undefined}>
-        <a href="/about">About</a>
+      <li aria-current={$page.url.pathname === "/stay" ? "page" : undefined}>
+        <a href="/stay">{$_("_page.stay.title")}</a>
       </li>
-      <li
-        aria-current={$page.url.pathname.startsWith("/sverdle")
-          ? "page"
-          : undefined}
-      >
-        <a href="/sverdle">Sverdle</a>
+      <li aria-current={$page.url.pathname === "/user" ? "page" : undefined}>
+        <a href="/user">{$_("_page.user.title")}</a>
       </li>
+      
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
       <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />

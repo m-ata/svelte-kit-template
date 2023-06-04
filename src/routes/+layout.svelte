@@ -1,6 +1,9 @@
 <script>
+  import "@skeletonlabs/skeleton/themes/theme-skeleton.css";
+  import "@skeletonlabs/skeleton/styles/all.css";
   import { validateUserToken } from "$lib/utils/validateToken";
   import Header from "../components/Header/Header.svelte";
+  import Loader from "../components/Loader/Loader.svelte";
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
   import { user } from "$lib/store/authStore";
@@ -9,6 +12,7 @@
   import "$lib/i18n";
   import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
   import Toast from "../components/Toast/Toast.svelte";
+  import { _, isLoading } from "svelte-i18n";
 
   export const load = async () => {
     if (browser) {
@@ -34,37 +38,46 @@
     let someDependency = localStorage.getItem("auth");
 
     // @ts-ignore
-    $: someDependency, update();
+    someDependency, update();
   });
 </script>
 
-{#if $toasts}
-  <div class="toast-container">
-    {#each $toasts.reverse() as toast, i}
-      {#if i < MAX_TOAST}
-      <Toast
-        type={toast.type}
-        dismissible={toast.dismissible}
-        on:dismiss={() => dismissToast(toast.id)}>{toast.message}</Toast>
-        {/if}
-    {/each}
+{#if $isLoading}
+  <Loader />
+{:else}
+  <div>
+    {#if $toasts}
+      <div class="toast-container">
+        {#each $toasts.reverse() as toast, i}
+          {#if i < MAX_TOAST}
+            <Toast
+              type={toast.type}
+              dismissible={toast.dismissible}
+              on:dismiss={() => dismissToast(toast.id)}>{toast.message}</Toast
+            >
+          {/if}
+        {/each}
+      </div>
+    {/if}
+    <div class="app">
+      {#if $user.loggedIn}
+        <Header />
+      {/if}
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <p>
+          {$_("_page.home.visit")}<a href="https://kit.svelte.dev"
+            >{$_("_page.home.link.svelteDocs")}</a
+          >
+          {$_("_page.home.svelte.learn")}
+        </p>
+      </footer>
+    </div>
   </div>
 {/if}
-
-<div class="app">
-  {#if $user.loggedIn}
-    <Header />
-  {/if}
-  <main>
-    <slot />
-  </main>
-
-  <footer>
-    <p>
-      visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
-    </p>
-  </footer>
-</div>
 
 <style>
   .toast-container {

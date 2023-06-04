@@ -28,7 +28,7 @@
     type === "desc"
       ? filteredData.sort((a, b) => (a[field] < b[field] ? 1 : -1))
       : filteredData.sort((a, b) => (a[field] > b[field] ? 1 : -1));
-      filteredData = [...filteredData];
+    filteredData = [...filteredData];
   };
 
   // reset all columns sort
@@ -41,7 +41,17 @@
   };
 
   const handleItemChange = (offset: number, limit: number) => {
+    paginationOption.limit = limit;
+    paginationOption = { ...paginationOption };
     handleFilterData(offset, limit);
+  };
+
+  // handling previous and next
+  const handleNextPrevious = (pageOffset: number) => {
+    const { limit } = paginationOption;
+    handleFilterData(pageOffset, pageOffset + limit);
+    paginationOption.offset = pageOffset;
+    paginationOption = { ...paginationOption };
   };
 </script>
 
@@ -96,7 +106,11 @@
         </tbody>
       </table>
     </div>
-    <Pagination option={paginationOption} handleItemChange={handleItemChange} />
+    <Pagination
+      option={paginationOption}
+      {handleItemChange}
+      {handleNextPrevious}
+    />
   </div>
 {/if}
 

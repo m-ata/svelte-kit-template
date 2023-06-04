@@ -9,6 +9,10 @@
       height: 24px;
       width: 75px;
       border: 1px solid #b3acac;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -18,10 +22,25 @@
   }
 
   .pagination {
-    i {
-        cursor: pointer;
+    button {
+      width: 30px;
+      height: 30px;
+      border: 1px solid darkgray;
+      background-color: #848484;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+    
+      &:disabled {
+        cursor: default;
+        background-color: transparent;
+        color: darkgray;
+      }
+
+      i {
         display: flex;
         justify-content: center;
+      }
     }
   }
 }

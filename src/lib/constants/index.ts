@@ -1,5 +1,11 @@
 export const publicRoutes = ["/login"];
 export const privateRoutes = ["/stay", "/user"];
+export const NEXT_PREV_TYPE = {
+  FIRST: "first",
+  PREVIOUS: 'previous',
+  NEXT: 'next',
+  LAST: 'last'
+};
 export const STAY_COLUMNS = [
   {
     name: "_page.stay.table.header.arrival",

@@ -12,6 +12,8 @@
     offset: 0,
     limit: 10,
     size: data?.length || 0,
+    page: 1,
+    total: data?.length / 10,
     amount: [10, 25, 50],
   };
   let filteredData: any[];
@@ -40,18 +42,17 @@
     columns = [...columns];
   };
 
-  const handleItemChange = (offset: number, limit: number) => {
+  const handleItemChange = (offset: number, limit: number, total: number, page: number) => {
     paginationOption.limit = limit;
-    paginationOption = { ...paginationOption };
+    paginationOption = { ...paginationOption, limit, offset, total, page};
     handleFilterData(offset, limit);
   };
 
   // handling previous and next
-  const handleNextPrevious = (pageOffset: number) => {
+  const handleNextPrevious = (offset: number, page: number) => {
     const { limit } = paginationOption;
-    handleFilterData(pageOffset, pageOffset + limit);
-    paginationOption.offset = pageOffset;
-    paginationOption = { ...paginationOption };
+    handleFilterData(offset, offset + limit);
+    paginationOption = { ...paginationOption, offset, page  };
   };
 </script>
 

@@ -5,7 +5,7 @@
   import { stays } from "$lib/store/stay.store";
   import type { TStayResponse, TStayDataTable } from "$lib/types/stay.type";
   import { getColumns } from "$lib/utils/columns.util";
-  const columns = ["Arrival Date", "Departure Date", "Description", "Persons", "Code"]
+
   let data: TStayDataTable[];
   stays.subscribe((stayList: TStayResponse[]) => {
     if (stayList?.length) {

@@ -2,12 +2,12 @@
   import { browser } from "$app/environment";
   import { tableA11y } from "@skeletonlabs/skeleton";
   import { _ } from "svelte-i18n";
-  import { onMount } from "svelte";
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import Pagination from "../Pagination/Pagination.svelte";
   export let columns: any[];
   export let data: any[];
+
   export let paginationOption: PaginationOption = {
     offset: 0,
     limit: 10,
@@ -18,9 +18,19 @@
   };
   let filteredData: any[];
 
-  onMount(() => {
+  $: handleResetData(data);
+
+  const handleResetData = (data: any) => {
     handleFilterData(0, 10);
-  });
+    paginationOption = {
+      offset: 0,
+      limit: 10,
+      size: data?.length || 0,
+      page: 1,
+      total: data?.length / 10,
+      amount: [10, 25, 50],
+    };
+  };
 
   const handleFilterData = (offset: number, limit: number) => {
     filteredData = data?.slice(offset, limit);
@@ -42,9 +52,14 @@
     columns = [...columns];
   };
 
-  const handleItemChange = (offset: number, limit: number, total: number, page: number) => {
+  const handleItemChange = (
+    offset: number,
+    limit: number,
+    total: number,
+    page: number
+  ) => {
     paginationOption.limit = limit;
-    paginationOption = { ...paginationOption, limit, offset, total, page};
+    paginationOption = { ...paginationOption, limit, offset, total, page };
     handleFilterData(offset, limit);
   };
 
@@ -52,7 +67,7 @@
   const handleNextPrevious = (offset: number, page: number) => {
     const { limit } = paginationOption;
     handleFilterData(offset, offset + limit);
-    paginationOption = { ...paginationOption, offset, page  };
+    paginationOption = { ...paginationOption, offset, page };
   };
 </script>
 

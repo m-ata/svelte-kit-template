@@ -7,19 +7,13 @@
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
   import { user } from "$lib/store/authStore";
-  import { locale, waitLocale } from "svelte-i18n";
-  import { browser } from "$app/environment";
+  
   import "$lib/i18n";
   import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
   import Toast from "../components/Toast/Toast.svelte";
   import { _, isLoading } from "svelte-i18n";
+  import { page } from "$app/stores";
 
-  export const load = async () => {
-    if (browser) {
-      locale.set(window.navigator.language);
-    }
-    await waitLocale();
-  };
   /**
    * @type {boolean | undefined}
    */

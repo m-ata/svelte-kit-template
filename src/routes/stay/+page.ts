@@ -7,8 +7,9 @@ export async function load({fetch} : any ) {
   await tick();
   getStays({
     fetchFunction: fetch,
+    // sample payload
     stayPayload: {
-      campId: "dbc5b547-b2a8-4885-bace-875199e719aa",
+      campId: "fafafafa-b2a8-4885-bace-875199e719aa",
       endDate: 4083077146160,
       startDate: 0,
     },

@@ -26,6 +26,7 @@
   <svelte:head>
     <title>{$_("_page.user.title")}</title>
     <meta name="description" content="Welcome to user" />
+    <link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
   </svelte:head>
   
   <div>

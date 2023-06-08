@@ -1,9 +1,22 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import logo from "$lib/images/svelte-logo.svg";
   import logoutImg from "$lib/images/logout.svg";
   import { logout } from "$lib/api/auth";
   import { _ } from "svelte-i18n";
+  import Modal from "./../Modal/Modal.svelte";
+  import type { ModalOptions } from "$lib/types/modal.type";
+
+  let isLogoutModalOpen: boolean = false;
+  const logoutModalOptions = {
+      heading: "Logout",
+      icon: logoutImg,
+      content: "<p style='font-size: large; font-weight: 500'>Are you sure, you want to logout?</p>",
+      onApply: () => logout(),
+      onCancel: () => {isLogoutModalOpen = false},
+      cancelText: "No",
+      applyText: "Yes"
+    } as ModalOptions
 </script>
 
 <header>
@@ -34,9 +47,14 @@
     </svg>
   </nav>
 
-  <button type="button" class="corner" on:click={logout}>
+  <button type="button" class="corner" on:click={() => isLogoutModalOpen = true}>
     <img src={logoutImg} alt="Logout" />
   </button>
+
+  {#if isLogoutModalOpen}
+    
+    <Modal modalOptions={logoutModalOptions} />
+  {/if}
 </header>
 
 <style lang="scss">

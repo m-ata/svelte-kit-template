@@ -19,7 +19,6 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
-		<i class="mi mi-arrow-down"><span class="u-sr-only">Arrow down</span></i>
 		{$_("_page.home.yourNew")}<br />{$_("_page.home.app.svelteKit")}
 	</h1>
 

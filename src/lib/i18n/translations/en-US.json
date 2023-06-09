@@ -29,6 +29,10 @@
 	"_page.user.table.header.userName":"UserName",
 	"_page.user.table.header.email":"Email",
 	"_page.user.table.header.phoneNumber":"PhoneNumber",
-	"_component.dataTable.pagination.itemsPerPage": "Items per page"
+	"_component.dataTable.pagination.itemsPerPage": "Items per page",
+	"_component.modal.logout.heading": "Logout",
+	"_component.modal.logout.button.yes": "Yes",
+	"_component.modal.logout.button.no": "No",
+	"_component.modal.logout.button.confirmText": "Are you sure, you want to logout?"
 
 }

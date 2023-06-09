@@ -9,13 +9,13 @@
 
   let isLogoutModalOpen: boolean = false;
   const logoutModalOptions = {
-      heading: "Logout",
+      heading: $_("_component.modal.logout.heading"),
       icon: logoutImg,
-      content: "<p style='font-size: large; font-weight: 500'>Are you sure, you want to logout?</p>",
+      content: `<p style='font-size: large; font-weight: 500'> ${$_("_component.modal.logout.button.confirmText")} </p>`,
       onApply: () => logout(),
       onCancel: () => {isLogoutModalOpen = false},
-      cancelText: "No",
-      applyText: "Yes"
+      cancelText: $_("_component.modal.logout.button.no"),
+      applyText: $_("_component.modal.logout.button.yes")
     } as ModalOptions
 </script>
 

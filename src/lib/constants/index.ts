@@ -64,3 +64,5 @@ export const USER_COLUMNS = [
     field: "phoneNumber",
   },
 ];
+
+export const MAX_USER_INACTIVITY = 5 * 60 * 1000;

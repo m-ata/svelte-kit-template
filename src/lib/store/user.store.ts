@@ -5,7 +5,7 @@ import type { TUserResponse } from "../types/user.type"
 const defaultValue: TUserResponse[] = [];
 
 const initialValue = browser
-  ? JSON.parse(window.localStorage.getItem("users") || "{}") ?? defaultValue
+  ? window.localStorage.getItem("users") ? JSON.parse(window.localStorage.getItem("users") || `${defaultValue}`) : defaultValue
   : defaultValue;
 
 export const users = writable(initialValue);

@@ -29,5 +29,9 @@
 	"_page.user.table.header.userName":"Nutzername",
 	"_page.user.table.header.email":"Email",
 	"_page.user.table.header.phoneNumber":"Telefonnummer",
-	"_component.dataTable.pagination.itemsPerPage": "Objekte pro Seite"
+	"_component.dataTable.pagination.itemsPerPage": "Objekte pro Seite",
+	"_component.modal.logout.heading": "Ausloggen",
+	"_component.modal.logout.button.yes": "Ja",
+	"_component.modal.logout.button.no": "NEIN",
+	"_component.modal.logout.button.confirmText": "Sind Sie sicher, dass Sie sich abmelden möchten?"
 }

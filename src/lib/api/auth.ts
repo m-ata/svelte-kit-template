@@ -5,6 +5,7 @@ import { user } from "$lib/store/authStore";
 import { users } from "$lib/store/user.store";
 import { stays } from "$lib/store/stay.store";
 import { tick } from "svelte/internal";
+import { userActivity } from "$lib/store/user-activity.store";
 
 export const fetchToken = async ({ username, password }: TokenPayload) => {
   return fetchUnprotected({
@@ -43,6 +44,9 @@ const resetStore = () => {
   users.set([]);
   // reset stays store
   stays.set([]);
+  userActivity.set({
+    lastUserActivity: 0
+  })
 };
 
 export const logout = async () => {

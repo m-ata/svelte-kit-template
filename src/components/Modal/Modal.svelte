@@ -4,35 +4,49 @@
 </script>
 
 <section class="modal">
-  <div class="header">
-    <div class="row">
-      <span>
-        {#if modalOptions.icon}
-          <img src={modalOptions.icon} width="50px" height="50px" alt="user" />
-        {/if}
+  {#if modalOptions?.heading || modalOptions.icon}
+    <div class="header">
+      <div class="row">
+        <span>
+          {#if modalOptions.icon}
+            <img
+              src={modalOptions.icon}
+              width="50px"
+              height="50px"
+              alt="user"
+            />
+          {/if}
 
-        <h2>{modalOptions.heading}</h2>
-      </span>
+          <h2>{modalOptions.heading}</h2>
+        </span>
 
-      <button class="btn-close" on:click={modalOptions.onCancel}>⨉</button>
+        <button class="btn-close" on:click={modalOptions.onCancel}>⨉</button>
+      </div>
+      <div class="horizontal-line" />
     </div>
-    <div class="horizontal-line" />
-  </div>
+  {/if}
 
   <div>
     {@html modalOptions.content}
   </div>
 
-  <div class="footer">
-    <div class="horizontal-line" />
-    <div class="action-buttons">
-      <button class="cancel" on:click={modalOptions.onCancel}> {modalOptions.cancelText} </button>
-      <button class="apply" on:click={modalOptions.onApply}> {modalOptions.applyText} </button>
+  {#if modalOptions.applyText || modalOptions.cancelText}
+    <div class="footer">
+      <div class="horizontal-line" />
+      <div class="action-buttons">
+        <button class="cancel" on:click={modalOptions.onCancel}>
+          {modalOptions.cancelText}
+        </button>
+        <button class="apply" on:click={modalOptions.onApply}>
+          {modalOptions.applyText}
+        </button>
+      </div>
     </div>
-  </div>
+  {/if}
 </section>
 
-<div class="overlay" />
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div class="overlay" on:click={modalOptions.onCancel} />
 
 <style lang="scss">
   @import "./style.scss";

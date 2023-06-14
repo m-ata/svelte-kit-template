@@ -66,3 +66,4 @@ export const USER_COLUMNS = [
 ];
 
 export const MAX_USER_INACTIVITY = 5 * 60 * 1000;
+export const LANGUAGES = ['en', 'de', 'nb']

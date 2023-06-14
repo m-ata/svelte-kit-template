@@ -1,9 +1,9 @@
 export type ModalOptions = {
-    heading: string;
+    heading?: string;
     icon?: string;
     content: string;
     onApply: any;
     onCancel: any;
-    cancelText: string;
-    applyText: string;
+    cancelText?: string;
+    applyText?: string;
 }

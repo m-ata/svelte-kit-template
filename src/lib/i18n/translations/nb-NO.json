@@ -33,6 +33,9 @@
 	"_component.modal.logout.heading": "Logg ut",
 	"_component.modal.logout.button.yes": "Ja",
 	"_component.modal.logout.button.no": "Nei",
-	"_component.modal.logout.button.confirmText": "Er du sikker på at du vil logge ut?"
+	"_component.modal.logout.button.confirmText": "Er du sikker på at du vil logge ut?",
+	"_common.language.en": "English",
+	"_common.language.de": "Deutsch",
+	"_common.language.nb": "Norsk"
 	
 }

@@ -12,7 +12,9 @@ export const ssr = false;
 
 export const load = async () => {
   if (browser) {
-    locale.set(window.navigator.language);
+    console.log("browser");
+    locale.set(window.localStorage.getItem("lang"));
+    window.addEventListener("storage", (event) => console.log(event), false);
   }
   await waitLocale();
 
@@ -65,4 +67,8 @@ const trackUserActivity = () => {
       userActivity.set({ lastUserActivity: Date.now() });
     }
   });
+};
+
+const setLocale = (e: any) => {
+  console.log(e);
 };

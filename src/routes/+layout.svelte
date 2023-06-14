@@ -12,7 +12,6 @@
   import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
   import Toast from "../components/Toast/Toast.svelte";
   import { _, isLoading } from "svelte-i18n";
-  import { page } from "$app/stores";
 
   /**
    * @type {boolean | undefined}

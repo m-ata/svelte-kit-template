@@ -5,9 +5,11 @@
   import { logout } from "$lib/api/auth";
   import { _ } from "svelte-i18n";
   import Modal from "./../Modal/Modal.svelte";
+  import LanguageDropDown from "./../LanguageDropDown/LanguageDropDown.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
 
   let isLogoutModalOpen: boolean = false;
+
   const logoutModalOptions = {
       heading: $_("_component.modal.logout.heading"),
       icon: logoutImg,
@@ -17,10 +19,11 @@
       cancelText: $_("_component.modal.logout.button.no"),
       applyText: $_("_component.modal.logout.button.yes")
     } as ModalOptions
+
 </script>
 
 <header>
-  <div class="corner">
+  <div class="logo">
     <a href="https://kit.svelte.dev">
       <img src={logo} alt="SvelteKit" />
     </a>
@@ -47,12 +50,15 @@
     </svg>
   </nav>
 
-  <button type="button" class="corner" on:click={() => isLogoutModalOpen = true}>
-    <img src={logoutImg} alt="Logout" />
-  </button>
+  <div>
+    <LanguageDropDown />
+  
+    <button type="button" class="image" on:click={() => isLogoutModalOpen = true}>
+      <img src={logoutImg} alt="Logout" />
+    </button>
+  </div>
 
   {#if isLogoutModalOpen}
-    
     <Modal modalOptions={logoutModalOptions} />
   {/if}
 </header>

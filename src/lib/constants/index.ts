@@ -10,6 +10,7 @@ export const STAY_COLUMNS = [
   {
     name: "_page.stay.table.header.arrival",
     field: "startDate",
+    type: "text | button ",
     sort: {
       isSortable: true,
       isSortActive: true,

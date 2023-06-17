@@ -25,7 +25,7 @@
             locale.set(lang);
           }}>
             <img src={`src/lib/images/flags/${lang}.svg`} alt={lang} />
-            <span class="active"> {$_(`_common.language.${lang}`)} </span>
+            <span class={`${selectedLang === lang ? 'active' : ''}`}> {$_(`_common.language.${lang}`)} </span>
           </li>
         {/each}
       </ul>

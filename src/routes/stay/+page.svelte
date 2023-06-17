@@ -5,6 +5,8 @@
   import { stays } from "$lib/store/stay.store";
   import type { TStayResponse, TStayDataTable } from "$lib/types/stay.type";
   import { getColumns } from "$lib/utils/columns.util";
+  import { onMount } from "svelte";
+  import { fetchData } from "$lib/api/api";
 
   let data: TStayDataTable[];
   stays.subscribe((stayList: TStayResponse[]) => {
@@ -22,6 +24,11 @@
       });
     }
   });
+
+  onMount(async () => {
+    fetchData();
+  });
+
 </script>
 
 <svelte:head>

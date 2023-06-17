@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "@skeletonlabs/skeleton/themes/theme-skeleton.css";
   import "@skeletonlabs/skeleton/styles/all.css";
   import { validateUserToken } from "$lib/utils/validateToken";
@@ -7,20 +7,32 @@
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
   import { user } from "$lib/store/authStore";
-  
+
   import "$lib/i18n";
   import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
   import Toast from "../components/Toast/Toast.svelte";
   import { _, isLoading } from "svelte-i18n";
+  import { userActivity } from "$lib/store/user-activity.store";
+  import type { TUserActivity } from "$lib/types/user.type";
+  import { MAX_USER_INACTIVITY } from "$lib/constants";
+  import { fetchData } from "$lib/api/api";
 
   /**
    * @type {boolean | undefined}
-   */
+  */
   let token;
 
   onMount(async () => {
+    
     token = await validateUserToken($user);
-  });
+
+    window.addEventListener("focus", () => fetchData());
+
+    window.addEventListener(`touchstart`, trackUserActivity);
+    window.addEventListener(`click`, trackUserActivity);
+    window.addEventListener(`focus`, trackUserActivity);
+    window.addEventListener(`scroll`, trackUserActivity);
+  })
 
   const update = async () => {
     // @ts-ignore
@@ -33,6 +45,26 @@
     // @ts-ignore
     someDependency, update();
   });
+
+  // track user activity
+  const trackUserActivity = () => {
+    
+    user.subscribe((authUser) => {
+      // user should be logged in to track activity
+      if (authUser.loggedIn) {
+        userActivity.subscribe((activity: TUserActivity) => {
+          const { lastUserActivity } = activity;
+          // console.log('trackUserActivity ', lastUserActivity < Date.now() - MAX_USER_INACTIVITY);
+          // compare if 5 minutes have passed since last activity
+          if (lastUserActivity < Date.now() - MAX_USER_INACTIVITY) {
+            fetchData();
+          }
+          
+        });
+      }
+    });
+    userActivity.set({ lastUserActivity: Date.now() });
+  };
 </script>
 
 {#if $isLoading}
@@ -53,9 +85,11 @@
       </div>
     {/if}
     <div class="app">
+
       {#if $user.loggedIn}
         <Header />
       {/if}
+
       <main>
         <slot />
       </main>

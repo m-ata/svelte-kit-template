@@ -3,6 +3,9 @@ import { browser } from "$app/environment";
 import { user } from "$lib/store/authStore";
 import { get } from "svelte/store";
 import { refreshToken } from "./auth";
+import { page } from "$app/stores";
+import { getStays } from "./stay";
+import { getUsers } from "./user";
 
 // Unprotected API
 export const fetchUnprotected = async ({
@@ -67,4 +70,31 @@ export const fetchProtected = async ({
         return result;
       }
     }
-  };
+};
+
+// generic fetch data based on current active page
+
+export const fetchData = () => {
+  page.subscribe((p) => {
+    switch (p?.route?.id) {
+      case "/stay":
+        getStays({
+          fetchFunction: fetch,
+          // sample payload
+          stayPayload: {
+            campId: "fafafafa-b2a8-4885-bace-875199e719aa",
+            endDate: 4083077146160,
+            startDate: 0,
+          },
+        });
+        break;
+      case "/user":
+        getUsers({
+          fetchFunction: fetch,
+        });
+        break;
+      default:
+        break;
+    }
+  });
+}

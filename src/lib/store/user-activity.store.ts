@@ -13,6 +13,7 @@ const initialValue = browser
 export const userActivity = writable(initialValue);
 
 userActivity.subscribe(data => {
+  // console.log("data --> ", data);
   if (browser) {
     window.localStorage.setItem("user-activity", JSON.stringify(data));
   }

@@ -30,15 +30,15 @@
     {@html modalOptions.content}
   </div>
 
-  {#if modalOptions.applyText || modalOptions.cancelText}
+  {#if modalOptions.confirmBtnText || modalOptions.cancelBtnText}
     <div class="footer">
       <div class="horizontal-line" />
       <div class="action-buttons">
         <button class="cancel" on:click={modalOptions.onCancel}>
-          {modalOptions.cancelText}
+          {modalOptions.cancelBtnText}
         </button>
-        <button class="apply" on:click={modalOptions.onApply}>
-          {modalOptions.applyText}
+        <button class="apply" on:click={modalOptions.onConfirm}>
+          {modalOptions.confirmBtnText}
         </button>
       </div>
     </div>

@@ -36,6 +36,8 @@
 	"_component.modal.logout.button.confirmText": "Er du sikker på at du vil logge ut?",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
-	"_common.language.nb": "Norsk"
+	"_common.language.nb": "Norsk",
+	"_common.actionText": "Handlinger",
+	"_common.confirmation.delete": "Er du sikker på at du vil slette dette oppholdet"
 	
 }

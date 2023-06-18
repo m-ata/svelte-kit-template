@@ -36,5 +36,7 @@
 	"_component.modal.logout.button.confirmText": "Sind Sie sicher, dass Sie sich abmelden möchten?",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
-	"_common.language.nb": "Norsk"
+	"_common.language.nb": "Norsk",
+	"_common.actionText": "Aktionen",
+	"_common.confirmation.delete": "Sind Sie sicher, dass Sie diesen Aufenthalt löschen möchten?"
 }

@@ -36,6 +36,8 @@
 	"_component.modal.logout.button.confirmText": "Are you sure, you want to logout?",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
-	"_common.language.nb": "Norsk"
+	"_common.language.nb": "Norsk",
+	"_common.actionText": "Actions",
+	"_common.confirmation.delete": "Are you sure you want to delete this stay"
 
 }

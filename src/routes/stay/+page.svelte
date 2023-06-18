@@ -1,44 +1,86 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import DataTable from "../../components/DataTable/DataTable.svelte";
-  import { parseDateInputFormat } from "../../lib/utils/date-parser.util";
-  import { stays } from "$lib/store/stay.store";
-  import type { TStayResponse, TStayDataTable } from "$lib/types/stay.type";
-  import { getColumns } from "$lib/utils/columns.util";
   import { onMount } from "svelte";
+  //custom imports
+  import DataTable from "../../components/DataTable/DataTable.svelte";
+  import { stays } from "$lib/store/stay.store";
+  import type { TStay, TStayDataTable } from "$lib/types/stay.type";
+  import { getColumns } from "$lib/utils/columns.util";
+  import Modal from "../../components/Modal/Modal.svelte";
+  import type { ModalOptions } from "$lib/types/modal.type";
+  import { DELETE_API } from "$lib/constants";
+  import { stayApiHandler } from "$lib/api/stay";
   import { fetchData } from "$lib/api/api";
 
-  let data: TStayDataTable[];
-  stays.subscribe((stayList: TStayResponse[]) => {
-    if (stayList?.length) {
-      data = stayList?.map((stay: TStayResponse) => {
-        const { startDate, endDate, stayDescription, numberOfFishers, code } =
-          stay;
-        return {
-          startDate: parseDateInputFormat(startDate),
-          endDate: parseDateInputFormat(endDate),
-          stayDescription,
-          numberOfFishers,
-          code,
-        } as TStayDataTable;
-      });
-    }
-  });
-
+  // fetching data on onMount
   onMount(async () => {
-    fetchData();
+    fetchData(true);
   });
+  //component states
+  let data: TStay[] = $stays;
+  let selectedStay: TStayDataTable | null;
+  let isDeleteStayModalOpen: boolean = false;
 
+  stays.subscribe((stayList: TStay[]) => data = stayList?.map((stay: TStay) => stay));
+
+  const deleteModalOptions = {
+    heading: $_("_component.modal.logout.heading"),
+    content: `<p style='font-size: large; font-weight: 500'> ${$_(
+      "_common.confirmation.delete"
+    )} </p>`,
+    onApply: () => {
+      stays.subscribe((stayList: TStay[]) => {
+        const stay = stayList.find(
+          (stay: TStay) => stay.code === selectedStay?.code
+        ) || { campId: "", startDate: 0, endDate: 0 };
+        if (stay?.stayId)
+          stayApiHandler({
+            fetchFunction: fetch,
+            payload: stay,
+            endpoint: DELETE_API.STAY,
+          });
+        selectedStay = null;
+      });
+      isDeleteStayModalOpen = false;
+    },
+    onCancel: () => (isDeleteStayModalOpen = false),
+    cancelText: $_("_component.modal.logout.button.no"),
+    applyText: $_("_component.modal.logout.button.yes"),
+  } as ModalOptions;
+
+  const handlers = {
+    delete: (stay: TStayDataTable) => {
+      isDeleteStayModalOpen = true;
+      selectedStay = stay;
+    },
+    selection: (selectedStay: TStay, target: any) => {
+      stays.set(
+        $stays.map((stay: TStay) => {
+          return {
+            ...stay,
+            isSelected:
+              stay?.stayId === selectedStay?.stayId
+                ? target.checked
+                : stay?.isSelected,
+          };
+        })
+      );
+    },
+  };
 </script>
 
 <svelte:head>
   <title>{$_("_page.stay.title")}</title>
   <meta name="description" content="Welcome to stay" />
-  <link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css"
+  />
 </svelte:head>
 
 <div>
-  <DataTable columns={getColumns("stay")} bind:data />
+  <DataTable columns={getColumns("stay")} bind:data clickHandlers={handlers} />
+  {#if isDeleteStayModalOpen}
+    <Modal modalOptions={deleteModalOptions} />
+  {/if}
 </div>
-
-

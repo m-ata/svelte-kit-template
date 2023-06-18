@@ -5,9 +5,10 @@
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import Pagination from "../Pagination/Pagination.svelte";
+  // props
   export let columns: any[];
   export let data: any[];
-
+  export let clickHandlers: any = {};
   export let paginationOption: PaginationOption = {
     offset: 0,
     limit: 10,
@@ -16,6 +17,7 @@
     total: data?.length / 10,
     amount: [10, 25, 50],
   };
+  // component state
   let filteredData: any[];
 
   $: handleResetData(data);
@@ -114,7 +116,27 @@
             {#each filteredData as row, rowIndex}
               <tr aria-rowindex={rowIndex + 1}>
                 {#each columns as column}
-                  <td>{row[column.field]}</td>
+                  <td>
+                    <div>
+                      {#if column?.type === "text"}
+                        <span> {row[column.field]} </span>
+                      {/if}
+                      {#if column?.type === "checkbox"}
+                        <input checked={row[column.field]} type="checkbox" on:change={event => clickHandlers.selection(row, event?.target)} />
+                      {/if}
+                      {#if column?.type === "icon-buttons"}
+                        {#each column.buttons as button}
+                          <button
+                            type="button"
+                            class="icon"
+                            on:click={clickHandlers[button.type](row)}
+                          >
+                            <img src={button.icon} alt={button.type} />
+                          </button>
+                        {/each}
+                      {/if}
+                    </div>
+                  </td>
                 {/each}
               </tr>
             {/each}

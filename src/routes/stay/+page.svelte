@@ -6,7 +6,7 @@
   import { stays } from "$lib/store/stay.store";
   import type { TStay, TStayDataTable } from "$lib/types/stay.type";
   import { getColumns } from "$lib/utils/columns.util";
-  import Modal from "../../components/Modal/Modal.svelte";
+  import Modal from "../../components/ConfirmModal/ConfirmModal.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
   import { DELETE_API } from "$lib/constants";
   import { stayApiHandler } from "$lib/api/stay";
@@ -28,7 +28,7 @@
     content: `<p style='font-size: large; font-weight: 500'> ${$_(
       "_common.confirmation.delete"
     )} </p>`,
-    onApply: () => {
+    onConfirm: () => {
       stays.subscribe((stayList: TStay[]) => {
         const stay = stayList.find(
           (stay: TStay) => stay.code === selectedStay?.code
@@ -44,8 +44,8 @@
       isDeleteStayModalOpen = false;
     },
     onCancel: () => (isDeleteStayModalOpen = false),
-    cancelText: $_("_component.modal.logout.button.no"),
-    applyText: $_("_component.modal.logout.button.yes"),
+    cancelBtnText: $_("_component.modal.logout.button.no"),
+    confirmBtnText: $_("_component.modal.logout.button.yes"),
   } as ModalOptions;
 
   const handlers = {

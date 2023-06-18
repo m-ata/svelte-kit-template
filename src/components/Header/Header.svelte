@@ -4,7 +4,7 @@
   import logoutImg from "$lib/images/logout.svg";
   import { logout } from "$lib/api/auth";
   import { _ } from "svelte-i18n";
-  import Modal from "./../Modal/Modal.svelte";
+  import Modal from "../ConfirmModal/ConfirmModal.svelte";
   import LanguageDropDown from "./../LanguageDropDown/LanguageDropDown.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
 
@@ -14,10 +14,10 @@
       heading: $_("_component.modal.logout.heading"),
       icon: logoutImg,
       content: `<p style='font-size: large; font-weight: 500'> ${$_("_component.modal.logout.button.confirmText")} </p>`,
-      onApply: () => logout(),
+      onConfirm: () => logout(),
       onCancel: () => {isLogoutModalOpen = false},
-      cancelText: $_("_component.modal.logout.button.no"),
-      applyText: $_("_component.modal.logout.button.yes")
+      cancelBtnText: $_("_component.modal.logout.button.no"),
+      confirmBtnText: $_("_component.modal.logout.button.yes")
     } as ModalOptions
 
 </script>

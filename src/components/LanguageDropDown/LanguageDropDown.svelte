@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { _, locale } from "svelte-i18n";
+  //custom imports
   import { LANGUAGES } from "$lib/constants";
   import { language } from "$lib/store/language.store";
-  import { _, locale } from "svelte-i18n";
-
+  // component state
   let selectedLang = '';
 
   language.subscribe(lang => {
@@ -11,8 +12,7 @@
 </script>
 
 <div class="sl-nav">
-  <img src={`src/lib/images/flags/en.svg`} alt="Logout" />
-  
+  <img src={`src/lib/images/flags/${selectedLang}.svg`} alt="flag" />
   <ul>
     <li>
       <b> {$_(`_common.language.${selectedLang}`)} </b> <i class="fa fa-angle-down" aria-hidden="true" />

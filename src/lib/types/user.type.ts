@@ -1,4 +1,4 @@
-export type TUserResponse = {
+export type TUser = {
   camps: string[];
   configuration: Object;
   createDate: number;
@@ -14,16 +14,10 @@ export type TUserResponse = {
   phoneNumber: string;
   userId: string;
   userName: string;
+  isSelected?: boolean
 };
 export type TUserArgs = {
   fetchFunction: any;
-};
-export type TUserDataTable = {
-  firstName: string;
-  lastName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
 };
 export type TUserActivity = {
     lastUserActivity: number;

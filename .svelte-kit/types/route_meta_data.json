@@ -9,11 +9,9 @@
 		"src/routes/+layout.ts"
 	],
 	"/stay": [
-		"src/routes/stay/+page.ts",
 		"src/routes/+layout.ts"
 	],
 	"/user": [
-		"src/routes/user/+page.ts",
 		"src/routes/+layout.ts"
 	]
 }

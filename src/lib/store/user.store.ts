@@ -1,8 +1,8 @@
 import { browser } from "$app/environment";
 import { writable } from "svelte/store";
-import type { TUserResponse } from "../types/user.type"
+import type { TUser } from "../types/user.type"
 
-const defaultValue: TUserResponse[] = [];
+const defaultValue: TUser[] = [];
 
 const initialValue = browser
   ? window.localStorage.getItem("users") ? JSON.parse(window.localStorage.getItem("users") || `${defaultValue}`) : defaultValue

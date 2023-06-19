@@ -4,14 +4,8 @@ import { user } from "$lib/store/authStore";
 import { get } from "svelte/store";
 import { refreshToken } from "./auth";
 import { page } from "$app/stores";
-import { getUsers } from "./user";
-import type { TApiArgs } from "$lib/types/common.type";
-import { appConfig } from "$lib/config";
-import { stays } from "$lib/store/stay.store";
-import { DELETE_API, GET_API } from "$lib/constants";
-import { users } from "$lib/store/user.store";
-import type { TStay } from "$lib/types/stay.type";
 import { stayApiHandler } from "./stay";
+import { userApiHandler } from "./user";
 
 // Unprotected API
 export const fetchUnprotected = async ({
@@ -96,9 +90,10 @@ export const fetchData = (isMount?: boolean) => {
         }, isMount);
         break;
       case "/user":
-        getUsers({
+        userApiHandler({
           fetchFunction: fetch,
-        });
+          endpoint: "/getUsers"
+        }, isMount);
         break;
       default:
         break;

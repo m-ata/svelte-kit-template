@@ -2,28 +2,72 @@
   import { _ } from "svelte-i18n";
   import DataTable from "../../components/DataTable/DataTable.svelte";
   import { users } from "$lib/store/user.store";
-  import type { TUserResponse, TUserDataTable } from "$lib/types/user.type";
+  import type { TUser } from "$lib/types/user.type";
   import { getColumns } from "$lib/utils/columns.util";
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/api";
-  let data: TUserDataTable[];
-  users.subscribe((userList: TUserResponse[]) => {
-    if (userList?.length) {
-      data = userList?.map((user: TUserResponse) => {
-        const { firstName, lastName, userName, email, phoneNumber } = user;
-        return {
-          firstName,
-          lastName,
-          userName,
-          email,
-          phoneNumber,
-        } as TUserDataTable;
+  import ConfirmationModal from "../../components/ConfirmModal/ConfirmModal.svelte";
+  import { userApiHandler } from "$lib/api/user";
+  import { DELETE_API } from "$lib/constants";
+  import type { ModalOptions } from "$lib/types/modal.type";
+
+  // component states
+  let data: TUser[] = $users;
+  let isDeleteUserModalOpen: boolean = false;
+  let selectedUser: TUser | null;
+  const deleteUserModalOptions = {
+    heading: $_("_component.modal.logout.heading"),
+    content: `<p style='font-size: large; font-weight: 500'> ${$_(
+      "_common.confirmation.delete"
+    )} </p>`,
+    onConfirm: () => {
+      users.subscribe((userList: TUser[]) => {
+        const user = userList.find(
+          (user: TUser) => user.userId === selectedUser?.userId
+        );
+        if (user?.userId)
+          userApiHandler({
+            fetchFunction: fetch,
+            payload: user,
+            endpoint: DELETE_API.USER,
+          });
+          selectedUser = null;
       });
+      isDeleteUserModalOpen = false;
+    },
+    onCancel: () => (isDeleteUserModalOpen = false),
+    cancelBtnText: $_("_component.modal.logout.button.no"),
+    confirmBtnText: $_("_component.modal.logout.button.yes"),
+  } as ModalOptions;
+
+  const handlers = {
+    delete: (user: TUser) => {
+      isDeleteUserModalOpen = true;
+      selectedUser = user;
+    },
+    selection: (selectedUser: TUser, target: any) => {
+      users.set(
+        $users.map((user: TUser) => {
+          return {
+            ...user,
+            isSelected:
+              user?.userId === selectedUser?.userId
+                ? target.checked
+                : user?.isSelected,
+          };
+        })
+      );
+    },
+  };
+
+  users.subscribe((userList: TUser[]) => {
+    if (userList?.length) {
+      data = userList?.map((user: TUser) => user);
     }
   });
 
   onMount(async () => {
-    fetchData();
+    fetchData(true);
   });
 </script>
 
@@ -37,5 +81,8 @@
 </svelte:head>
 
 <div>
-  <DataTable columns={getColumns("user")} bind:data />
+  <DataTable columns={getColumns("user")} bind:data clickHandlers={handlers} />
+  {#if isDeleteUserModalOpen}
+    <ConfirmationModal modalOptions={deleteUserModalOptions} />
+  {/if}
 </div>

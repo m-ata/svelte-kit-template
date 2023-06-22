@@ -38,6 +38,7 @@
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
 	"_common.actionText": "Actions",
+	"_common.button.refresh": "Refresh",
 	"_common.confirmation.delete": "Are you sure you want to delete this stay"
 
 }

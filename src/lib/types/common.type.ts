@@ -1,7 +1,5 @@
-import type { TStay } from "./stay.type";
-
 export type TApiArgs = {
     fetchFunction: any;
-    payload: TStay;
+    payload?: any;
     endpoint: string
 }

@@ -38,6 +38,7 @@
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
 	"_common.actionText": "Handlinger",
+	"_common.button.refresh": "Forfriske",
 	"_common.confirmation.delete": "Er du sikker på at du vil slette dette oppholdet"
 	
 }

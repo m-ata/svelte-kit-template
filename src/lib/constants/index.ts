@@ -122,3 +122,25 @@ export const DELETE_API = {
   STAY: '/deleteStay',
   USER: '/deleteUser'
 }
+
+export const UPDATE_API = {
+  USER: '/updateUser'
+}
+
+export const emptyUser = {
+  camps: [],
+  configuration: {},
+  createDate: 0,
+  email: '',
+  emailVerificationCode: '',
+  emailVerified: false,
+  firstName: '',
+  initialUser: false,
+  lastName: '',
+  lastUpdateDate: 0,
+  name: '',
+  organisationId: 0,
+  phoneNumber: '',
+  userId: '',
+  userName: '',
+}

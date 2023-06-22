@@ -54,7 +54,6 @@
       if (authUser.loggedIn) {
         userActivity.subscribe((activity: TUserActivity) => {
           const { lastUserActivity } = activity;
-          // console.log('trackUserActivity ', lastUserActivity < Date.now() - MAX_USER_INACTIVITY);
           // compare if 5 minutes have passed since last activity
           if (lastUserActivity < Date.now() - MAX_USER_INACTIVITY) {
             fetchData();

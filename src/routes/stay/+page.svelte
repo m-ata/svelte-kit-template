@@ -11,6 +11,8 @@
   import { DELETE_API } from "$lib/constants";
   import { stayApiHandler } from "$lib/api/stay";
   import { fetchData } from "$lib/api/api";
+  import Button from "../../components/Button/Button.svelte";
+  import refreshIcon from "$lib/images/icons/refresh.svg";
 
   // fetching data on onMount
   onMount(async () => {
@@ -21,7 +23,9 @@
   let selectedStay: TStayDataTable | null;
   let isDeleteStayModalOpen: boolean = false;
 
-  stays.subscribe((stayList: TStay[]) => data = stayList?.map((stay: TStay) => stay));
+  stays.subscribe(
+    (stayList: TStay[]) => (data = stayList?.map((stay: TStay) => stay))
+  );
 
   const deleteModalOptions = {
     heading: $_("_component.modal.logout.heading"),
@@ -67,6 +71,8 @@
       );
     },
   };
+
+  const refreshUsers = () => fetchData(true);
 </script>
 
 <svelte:head>
@@ -79,6 +85,11 @@
 </svelte:head>
 
 <div>
+  <Button
+    buttonText={$_("_common.button.refresh")}
+    icon={refreshIcon}
+    clickHandler={refreshUsers}
+  />
   <DataTable columns={getColumns("stay")} bind:data clickHandlers={handlers} />
   {#if isDeleteStayModalOpen}
     <Modal modalOptions={deleteModalOptions} />

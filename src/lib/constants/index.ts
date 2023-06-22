@@ -68,24 +68,45 @@ export const STAY_COLUMNS = [
 
 export const USER_COLUMNS = [
   {
+    name: "",
+    type: "checkbox",
+    field: "isSelected",
+  },
+  {
     name: "_page.user.table.header.firstName",
     field: "firstName",
+    type: "text",
   },
   {
     name: "_page.user.table.header.lastName",
     field: "lastName",
+    type: "text",
   },
   {
     name: "_page.user.table.header.userName",
     field: "userName",
+    type: "text",
   },
   {
     name: "_page.user.table.header.email",
     field: "email",
+    type: "text",
   },
   {
     name: "_page.user.table.header.phoneNumber",
     field: "phoneNumber",
+    type: "text",
+  },
+  {
+    name: "_common.actionText",
+    type: "icon-buttons",
+    buttons: [{
+      type: 'edit',
+      icon: editIcon
+    }, {
+      type: 'delete',
+      icon: deleteIcon,
+    }]
   },
 ];
 

@@ -10,6 +10,7 @@ import { _ } from "svelte-i18n";
 export const loginFormSubmit = async (event: any) => {
   event.preventDefault();
   const formData = new FormData(event.target);
+  console.log(formData)
   let json = Object.fromEntries(formData.entries());
   try { 
     const token = await fetchToken(json as TokenPayload);

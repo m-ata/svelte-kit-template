@@ -14,6 +14,7 @@ export type TUser = {
   phoneNumber: string;
   userId: string;
   userName: string;
+  userPassword?: string;
   isSelected?: boolean
 };
 export type TUserArgs = {

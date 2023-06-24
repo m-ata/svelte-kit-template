@@ -36,7 +36,6 @@ if (browser) {
       goto("/login");
     }
     if (auth.loggedIn) {
-      console.log(auth.loggedIn)
       window.location.href = '/';
     }
   });

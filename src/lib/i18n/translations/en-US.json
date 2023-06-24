@@ -1,5 +1,6 @@
 {
 	"_page.login.loginButton": "Login",
+	"_page.login.heading": "Login to your account",
 	"_page.login.loginErrorMessage": "Login failed",
 	"_page.login.field.username": "Username",
 	"_page.login.field.password": "Password",
@@ -34,10 +35,20 @@
 	"_component.modal.logout.button.yes": "Yes",
 	"_component.modal.logout.button.no": "No",
 	"_component.modal.logout.button.confirmText": "Are you sure, you want to logout?",
+	"_component.modal.stay.edit.heading": "Edit Stay",
+	"_component.modal.user.edit.heading": "Edit User",
+	"_component.modal.user.form.field.firstName": "First Name",
+	"_component.modal.user.form.field.lastName": "Last Name",
+	"_component.modal.user.form.field.email": "Email",
+	"_component.modal.user.form.field.phone": "Phone",
+	"_component.modal.user.form.field.userName": "User Name",
+	"_component.modal.user.form.field.password": "Password",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
 	"_common.actionText": "Actions",
+	"_common.cancelText": "Cancel",
+	"_common.applyText": "Apply",
 	"_common.button.refresh": "Refresh",
 	"_common.confirmation.delete": "Are you sure you want to delete this stay"
 

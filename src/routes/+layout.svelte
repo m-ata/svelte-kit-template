@@ -19,11 +19,10 @@
 
   /**
    * @type {boolean | undefined}
-  */
+   */
   let token;
 
   onMount(async () => {
-    
     token = await validateUserToken($user);
 
     window.addEventListener("focus", () => fetchData());
@@ -32,7 +31,7 @@
     window.addEventListener(`click`, trackUserActivity);
     window.addEventListener(`focus`, trackUserActivity);
     window.addEventListener(`scroll`, trackUserActivity);
-  })
+  });
 
   const update = async () => {
     // @ts-ignore
@@ -48,18 +47,15 @@
 
   // track user activity
   const trackUserActivity = () => {
-    
     user.subscribe((authUser) => {
       // user should be logged in to track activity
       if (authUser.loggedIn) {
         userActivity.subscribe((activity: TUserActivity) => {
           const { lastUserActivity } = activity;
-          // console.log('trackUserActivity ', lastUserActivity < Date.now() - MAX_USER_INACTIVITY);
           // compare if 5 minutes have passed since last activity
           if (lastUserActivity < Date.now() - MAX_USER_INACTIVITY) {
             fetchData();
           }
-          
         });
       }
     });
@@ -85,7 +81,6 @@
       </div>
     {/if}
     <div class="app">
-
       {#if $user.loggedIn}
         <Header />
       {/if}
@@ -94,14 +89,16 @@
         <slot />
       </main>
 
-      <footer>
-        <p>
-          {$_("_page.home.visit")}<a href="https://kit.svelte.dev"
-            >{$_("_page.home.link.svelteDocs")}</a
-          >
-          {$_("_page.home.svelte.learn")}
-        </p>
-      </footer>
+      {#if $user.loggedIn}
+        <footer>
+          <p>
+            {$_("_page.home.visit")}<a href="https://kit.svelte.dev"
+              >{$_("_page.home.link.svelteDocs")}</a
+            >
+            {$_("_page.home.svelte.learn")}
+          </p>
+        </footer>
+      {/if}
     </div>
   </div>
 {/if}

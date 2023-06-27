@@ -12,6 +12,7 @@
   import type { FormModalOptions, ModalOptions } from "$lib/types/modal.type";
   import Button from "../../components/Button/Button.svelte";
   import FormModal from "../../components/FormModal/FormModal.svelte";
+  import ContentBar from "../../components/ContentBar/ContentBar.svelte";
   import refreshIcon from "$lib/images/icons/refresh.svg";
   import emailIcon from "$lib/images/icons/email.svg";
   import phoneIcon from "$lib/images/icons/phone.svg";
@@ -23,9 +24,14 @@
   let isEditUserModalOpen: boolean = false;
   let selectedUser: TUser | null = emptyUser;
   const deleteUserModalOptions = {
-    heading: $_("_component.modal.logout.heading"),
+    heading: $_("_common.confirmation.heading"),
     content: `<p style='font-size: large; font-weight: 500'> ${$_(
-      "_common.confirmation.delete"
+      "_common.confirmation.deleteText",
+      {
+        values: {
+          deleteType: "user",
+        },
+      }
     )} </p>`,
     onConfirm: () => {
       users.subscribe((userList: TUser[]) => {
@@ -43,8 +49,8 @@
       isDeleteUserModalOpen = false;
     },
     onCancel: () => (isDeleteUserModalOpen = false),
-    cancelBtnText: $_("_component.modal.logout.button.no"),
-    confirmBtnText: $_("_component.modal.logout.button.yes"),
+    cancelBtnText: $_("_common.confirmation.button.no"),
+    confirmBtnText: $_("_common.confirmation.button.yes"),
   } as ModalOptions;
 
   let editUserModalOptions = {
@@ -100,8 +106,8 @@
           (selectedUser as any)[key] = json[key];
         }
       }
-      if (json['userPassword'] && selectedUser) {
-        (selectedUser as any)['userPassword'] = json['userPassword']
+      if (json["userPassword"] && selectedUser) {
+        (selectedUser as any)["userPassword"] = json["userPassword"];
       }
       // calling api
       userApiHandler({
@@ -163,7 +169,7 @@
       case "userName":
         return selectedUser?.userName;
       case "userPassword":
-        return '';
+        return "";
       default:
         break;
     }
@@ -172,7 +178,6 @@
   users.subscribe((userList: TUser[]) => {
     if (userList?.length) {
       data = userList?.map((user: TUser) => user);
-      console.log(data);
     }
   });
 
@@ -192,18 +197,11 @@
   />
 </svelte:head>
 
-<div>
-  <Button
-    buttonText={$_("_common.button.refresh")}
-    icon={refreshIcon}
-    clickHandler={refreshUsers}
-  />
-  <DataTable columns={getColumns("user")} bind:data clickHandlers={handlers} />
-  {#if isDeleteUserModalOpen}
-    <ConfirmationModal modalOptions={deleteUserModalOptions} />
-  {/if}
+<DataTable columns={getColumns("user")} bind:data clickHandlers={handlers} />
+{#if isDeleteUserModalOpen}
+  <ConfirmationModal modalOptions={deleteUserModalOptions} />
+{/if}
 
-  {#if isEditUserModalOpen}
-    <FormModal modalOptions={editUserModalOptions} />
-  {/if}
-</div>
+{#if isEditUserModalOpen}
+  <FormModal modalOptions={editUserModalOptions} />
+{/if}

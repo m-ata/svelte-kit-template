@@ -5,6 +5,8 @@
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import Pagination from "../Pagination/Pagination.svelte";
+  import arrowUp from '$lib/images/icons/arrow-up.svg';
+  import arrowDown from '$lib/images/icons/arrow-down.svg';
   // props
   export let columns: any[];
   export let data: any[];
@@ -74,7 +76,7 @@
 </script>
 
 {#if browser}
-  <div style="width: 100%">
+  <div class="container">
     <div class="table-container">
       <table class="table" role="grid" use:tableA11y>
         <thead>
@@ -96,17 +98,16 @@
                 }}
               >
                 {#if column?.sort?.isSortable}
-                  <i
-                    class={`mi ${
-                      column.sort.sortType === "asc"
-                        ? "mi-arrow-up"
-                        : "mi-arrow-down"
-                    } ${column.sort.isSortActive ? "display-unset" : ""}`}
-                  >
-                    <span class="u-sr-only" />
-                  </i>
+                  <img 
+                    src={column.sort.sortType === "asc" ? arrowUp : arrowDown} 
+                    alt="sort-icon" 
+                    class={column.sort.isSortActive ? "display-unset" : ""}
+                  />
                 {/if}
-                {$_(column.name)}
+                <span>
+                  {$_(column.name)}
+                </span>
+                
               </th>
             {/each}
           </tr>
@@ -122,7 +123,7 @@
                         <span> {row[column.field]} </span>
                       {/if}
                       {#if column?.type === "checkbox"}
-                        <input checked={row[column.field]} type="checkbox" on:change={event => clickHandlers.selection(row, event?.target)} />
+                        <input class="checkbox" checked={row[column.field]} type="checkbox" on:change={event => clickHandlers.selection(row, event?.target)} />
                       {/if}
                       {#if column?.type === "icon-buttons"}
                         {#each column.buttons as button}

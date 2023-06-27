@@ -6,6 +6,10 @@
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import { NEXT_PREV_TYPE } from "$lib/constants";
+  import chevronLeft from "$lib/images/icons/chevron-left.svg";
+  import chevronRight from "$lib/images/icons/chevron-right.svg";
+  import chevronDoubleRight from "$lib/images/icons/chevron-double-right.svg";
+  import chevronDoubleLeft from "$lib/images/icons/chevron-double-left.svg";
 
   //props
   export let handleItemChange: any;
@@ -65,27 +69,22 @@
   <div class="pagination">
     <button
       disabled={option.offset === 0}
-      on:click={() => onNavigationChange(0, 'first')}
+      on:click={() => onNavigationChange(0, "first")}
     >
-      <i class="mi mi-chevron-double-left">
-        <span class="u-sr-only" />
-      </i>
+      <img src={chevronDoubleLeft} alt="chevron-double-left" />
     </button>
     <button
       disabled={option.offset === 0}
-      on:click={() => onNavigationChange(option.offset - option.limit, 'previous')}
+      on:click={() =>
+        onNavigationChange(option.offset - option.limit, "previous")}
     >
-      <i class="mi mi-chevron-left">
-        <span class="u-sr-only" />
-      </i>
+      <img src={chevronLeft} alt="chevron-left" />
     </button>
     <button
       disabled={option.offset + option.limit >= option.size}
-      on:click={() => onNavigationChange(option.offset + option.limit, 'next')}
+      on:click={() => onNavigationChange(option.offset + option.limit, "next")}
     >
-      <i class="mi mi-chevron-right">
-        <span class="u-sr-only" />
-      </i>
+      <img src={chevronRight} alt="chevron-right" />
     </button>
     <button
       disabled={option.offset + option.limit >= option.size}
@@ -94,12 +93,11 @@
           option.size -
             (option.size % option.limit === 0
               ? option.limit
-              : option.size % option.limit), 'last'
+              : option.size % option.limit),
+          "last"
         )}
     >
-      <i class="mi mi-chevron-double-right">
-        <span class="u-sr-only" />
-      </i>
+      <img src={chevronDoubleRight} alt="chevron-double-left" />
     </button>
   </div>
 </div>

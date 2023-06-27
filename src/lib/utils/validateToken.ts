@@ -9,7 +9,7 @@ export const validateUserToken = async(user: UserToken) => {
             await goto("/login");
         }
         if (user.loggedIn && publicRoutes.includes(currentLocation)) {
-            await goto("/");
+            await goto("/dashboard");
         }
         return user.loggedIn;
     } catch(error) {

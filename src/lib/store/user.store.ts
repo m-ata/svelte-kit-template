@@ -9,6 +9,7 @@ const initialValue = browser
   : defaultValue;
 
 export const users = writable(initialValue);
+
 users.subscribe(data => {
   if (browser) {
     window.localStorage.setItem("users", JSON.stringify(data));

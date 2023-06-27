@@ -5,31 +5,43 @@
   export let clickHandler: any;
 </script>
 
-<button on:click={clickHandler}> 
-    {#if icon}
-        <img src={icon} alt="icon" />
-    {/if}
-     {buttonText} </button>
+<button on:click={clickHandler}>
+  {#if icon}
+    <img src={icon} alt="icon" />
+  {/if}
+  {buttonText}
+</button>
 
 <style lang="scss">
   button {
-    background-color: #2196F3;
+    background-color: rgb(0, 84, 166);
     border: none;
-    color: white;
-    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    font-weight: 600px;
+    padding: 8px 12px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
     font-size: 16px;
     margin: 4px 0px;
     cursor: pointer;
-    border-radius: 5px;
-    float: right;
+    border-radius: 6px;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: rgb(0, 67, 133);
+      box-shadow: none;
+      text-decoration: none;
+    }
 
     img {
-        width: 25px;
-        height: 25px;
-        color: white;
+      width: 25px;
+      height: 25px;
+      color: white;
     }
   }
 </style>

@@ -9,8 +9,8 @@
 	"_page.login.success": "Login Successfully!",
 	"_component.logoutButton": "Logout" ,
 	"_page.home.title":"Home" ,
-	"_page.stay.title":"Stay",
-	"_page.user.title":"User",
+	"_page.stay.title":"Stays",
+	"_page.user.title":"Users",
 	"_page.stay.table.header.arrival":"Arrival",
 	"_page.stay.table.header.departure":"Departure",
 	"_page.stay.table.header.stayDescription":"Description",
@@ -32,8 +32,6 @@
 	"_page.user.table.header.phoneNumber":"PhoneNumber",
 	"_component.dataTable.pagination.itemsPerPage": "Items per page",
 	"_component.modal.logout.heading": "Logout",
-	"_component.modal.logout.button.yes": "Yes",
-	"_component.modal.logout.button.no": "No",
 	"_component.modal.logout.button.confirmText": "Are you sure, you want to logout?",
 	"_component.modal.stay.edit.heading": "Edit Stay",
 	"_component.modal.user.edit.heading": "Edit User",
@@ -43,6 +41,9 @@
 	"_component.modal.user.form.field.phone": "Phone",
 	"_component.modal.user.form.field.userName": "User Name",
 	"_component.modal.user.form.field.password": "Password",
+	"_component.drawer.menu.dashboard": "Dashboard",
+	"_component.drawer.menu.stay": "Stays",
+	"_component.drawer.menu.users": "Users",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
@@ -50,6 +51,9 @@
 	"_common.cancelText": "Cancel",
 	"_common.applyText": "Apply",
 	"_common.button.refresh": "Refresh",
-	"_common.confirmation.delete": "Are you sure you want to delete this stay"
+	"_common.confirmation.deleteText": "Are you sure you want to delete this {deleteType}",
+	"_common.confirmation.heading": "Confirmation",
+	"_common.confirmation.button.yes": "Yes",
+	"_common.confirmation.button.no": "No"
 
 }

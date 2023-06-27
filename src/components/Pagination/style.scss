@@ -1,7 +1,11 @@
 .paginator-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  position: absolute;
+  bottom: 10px;
+  padding: 8px;
+  width: calc(100vw - 250px);
+
   .page-items {
     select {
       min-width: 50px;
@@ -22,22 +26,32 @@
   }
 
   .pagination {
+    display: flex;
     button {
       width: 30px;
       height: 30px;
-      border: 1px solid darkgray;
-      background-color: #848484;
-      color: white;
-      border-radius: 50%;
+      background-color: rgb(241, 245, 249);
+      color: rgb(166, 182, 200);
+      border-radius: 6px;
       cursor: pointer;
-    
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      padding: 6px;
+
       &:disabled {
         cursor: default;
         background-color: transparent;
         color: darkgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
       }
 
-      i {
+      img {
         display: flex;
         justify-content: center;
       }

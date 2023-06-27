@@ -1,6 +1,4 @@
 <script lang="ts">
-  import welcome from "$lib/images/svelte-welcome.webp";
-  import welcome_fallback from "$lib/images/svelte-welcome.png";
   import { loginFormSubmit } from "./login";
   import { _ } from "svelte-i18n";
 </script>

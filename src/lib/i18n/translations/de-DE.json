@@ -32,8 +32,6 @@
 	"_page.user.table.header.phoneNumber":"Telefonnummer",
 	"_component.dataTable.pagination.itemsPerPage": "Objekte pro Seite",
 	"_component.modal.logout.heading": "Ausloggen",
-	"_component.modal.logout.button.yes": "Ja",
-	"_component.modal.logout.button.no": "NEIN",
 	"_component.modal.logout.button.confirmText": "Sind Sie sicher, dass Sie sich abmelden möchten?",
 	"_component.modal.stay.edit.heading": "Aufenthalt bearbeiten",
 	"_component.modal.user.edit.heading": "Benutzer bearbeiten",
@@ -43,6 +41,9 @@
 	"_component.modal.user.form.field.phone": "Telefon",
 	"_component.modal.user.form.field.userName": "Nutzername",
 	"_component.modal.user.form.field.password": "Passwort",
+	"_component.drawer.menu.dashboard": "Dashboard",
+	"_component.drawer.menu.stay": "Stay",
+	"_component.drawer.menu.users": "Users",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
@@ -50,5 +51,8 @@
 	"_common.cancelText": "Stornieren",
 	"_common.applyText": "Anwenden",
 	"_common.button.refresh": "Aktualisierung",
-	"_common.confirmation.delete": "Sind Sie sicher, dass Sie diesen Aufenthalt löschen möchten?"
+	"_common.confirmation.deleteText": "Sind Sie sicher, dass Sie diesen {deleteType} löschen möchten?",
+	"_common.confirmation.heading": "Bestätigung",
+	"_common.confirmation.button.yes": "Ja",
+	"_common.confirmation.button.no": "NEIN"
 }

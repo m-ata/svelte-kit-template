@@ -3,6 +3,8 @@
   import "@skeletonlabs/skeleton/styles/all.css";
   import { validateUserToken } from "$lib/utils/validateToken";
   import Header from "../components/Header/Header.svelte";
+  import Drawer from "../components/Drawer/Drawer.svelte";
+  import ContentBar from "../components/ContentBar/ContentBar.svelte";
   import Loader from "../components/Loader/Loader.svelte";
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
@@ -83,27 +85,22 @@
     <div class="app">
       {#if $user.loggedIn}
         <Header />
+        <Drawer />
       {/if}
 
-      <main>
+      <main class={$user.loggedIn ? 'logged-in-layout' : ''}>
+        {#if $user.loggedIn}
+          <ContentBar />
+        {/if}
+
         <slot />
       </main>
 
-      {#if $user.loggedIn}
-        <footer>
-          <p>
-            {$_("_page.home.visit")}<a href="https://kit.svelte.dev"
-              >{$_("_page.home.link.svelteDocs")}</a
-            >
-            {$_("_page.home.svelte.learn")}
-          </p>
-        </footer>
-      {/if}
     </div>
   </div>
 {/if}
 
-<style>
+<style lang="scss">
   .toast-container {
     position: absolute;
     top: 5px;
@@ -125,6 +122,16 @@
     max-width: 64rem;
     margin: 0 auto;
     box-sizing: border-box;
+
+    &.logged-in-layout {
+      width: calc(100vw - 100px) !important;
+      left: 230px;
+      top: 60px;
+      position: fixed;
+      max-width: unset;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   footer {

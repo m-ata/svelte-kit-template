@@ -2,7 +2,7 @@ import editIcon from '$lib/images/icons/edit.svg';
 import deleteIcon from '$lib/images/icons/delete.svg';
 
 export const publicRoutes = ["/login"];
-export const privateRoutes = ["/stay", "/user"];
+export const privateRoutes = ["/dashboard", "/stay", "/user"];
 export const NEXT_PREV_TYPE = {
   FIRST: "first",
   PREVIOUS: 'previous',

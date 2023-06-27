@@ -13,10 +13,10 @@ export const nodes = [
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [3],
+		"/dashboard": [3],
 		"/login": [4,[2]],
 		"/stay": [5],
-		"/user": [6]
+		"/users": [6]
 	};
 
 export const hooks = {

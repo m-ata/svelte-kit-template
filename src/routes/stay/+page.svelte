@@ -11,8 +11,6 @@
   import { DELETE_API } from "$lib/constants";
   import { stayApiHandler } from "$lib/api/stay";
   import { fetchData } from "$lib/api/api";
-  import Button from "../../components/Button/Button.svelte";
-  import refreshIcon from "$lib/images/icons/refresh.svg";
 
   // fetching data on onMount
   onMount(async () => {
@@ -28,9 +26,14 @@
   );
 
   const deleteModalOptions = {
-    heading: $_("_component.modal.logout.heading"),
+    heading: $_("_common.confirmation.heading"),
     content: `<p style='font-size: large; font-weight: 500'> ${$_(
-      "_common.confirmation.delete"
+      "_common.confirmation.deleteText",
+      {
+        values: {
+          deleteType: "stay",
+        },
+      }
     )} </p>`,
     onConfirm: () => {
       stays.subscribe((stayList: TStay[]) => {
@@ -48,8 +51,8 @@
       isDeleteStayModalOpen = false;
     },
     onCancel: () => (isDeleteStayModalOpen = false),
-    cancelBtnText: $_("_component.modal.logout.button.no"),
-    confirmBtnText: $_("_component.modal.logout.button.yes"),
+    cancelBtnText: $_("_common.confirmation.button.no"),
+    confirmBtnText: $_("_common.confirmation.button.yes"),
   } as ModalOptions;
 
   const handlers = {
@@ -72,7 +75,6 @@
     },
   };
 
-  const refreshUsers = () => fetchData(true);
 </script>
 
 <svelte:head>
@@ -85,11 +87,6 @@
 </svelte:head>
 
 <div>
-  <Button
-    buttonText={$_("_common.button.refresh")}
-    icon={refreshIcon}
-    clickHandler={refreshUsers}
-  />
   <DataTable columns={getColumns("stay")} bind:data clickHandlers={handlers} />
   {#if isDeleteStayModalOpen}
     <Modal modalOptions={deleteModalOptions} />

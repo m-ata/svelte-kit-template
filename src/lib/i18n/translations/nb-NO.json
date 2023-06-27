@@ -32,8 +32,6 @@
 	"_page.user.table.header.phoneNumber":"Telefonnummer",
 	"_component.dataTable.pagination.itemsPerPage": "Elementer per side",
 	"_component.modal.logout.heading": "Logg ut",
-	"_component.modal.logout.button.yes": "Ja",
-	"_component.modal.logout.button.no": "Nei",
 	"_component.modal.logout.button.confirmText": "Er du sikker på at du vil logge ut?",
 	"_component.modal.stay.edit.heading": "Rediger opphold",
 	"_component.modal.user.edit.heading": "Rediger bruker",
@@ -43,6 +41,9 @@
 	"_component.modal.user.form.field.phone": "Telefon",
 	"_component.modal.user.form.field.userName": "Brukernavn",
 	"_component.modal.user.form.field.password": "Passord",
+	"_component.drawer.menu.dashboard": "Dashboard",
+	"_component.drawer.menu.stay": "Stay",
+	"_component.drawer.menu.users": "Users",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
 	"_common.language.nb": "Norsk",
@@ -50,6 +51,9 @@
 	"_common.cancelText": "Avbryt",
 	"_common.applyText": "Søke om",
 	"_common.button.refresh": "Forfriske",
-	"_common.confirmation.delete": "Er du sikker på at du vil slette dette oppholdet"
+	"_common.confirmation.deleteText": "Er du sikker på at du vil slette denne {deleteType}",
+	"_common.confirmation.heading": "Bekreftelse",
+	"_common.confirmation.button.yes": "Ja",
+	"_common.confirmation.button.no": "Nei"
 	
 }

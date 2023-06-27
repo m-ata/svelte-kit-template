@@ -5,12 +5,12 @@ import { get } from "svelte/store";
 import type { TokenPayload } from "$lib/types";
 import { addToast } from "$lib/store/toastStore";
 import { _ } from "svelte-i18n";
+import { activeTabConfig } from "$lib/store/active-tab-config.store";
 
 // handling login with API service
 export const loginFormSubmit = async (event: any) => {
   event.preventDefault();
   const formData = new FormData(event.target);
-  console.log(formData)
   let json = Object.fromEntries(formData.entries());
   try { 
     const token = await fetchToken(json as TokenPayload);
@@ -24,7 +24,12 @@ export const loginFormSubmit = async (event: any) => {
       dismissible: true,
       timeout: 3000,
     });
-    goto("/");
+    goto("/dashboard");
+    activeTabConfig.set({
+      tab: 'dashboard',
+      tabName: get(_)("_component.drawer.menu.dashboard"),
+      total: 0
+    })
   } catch {
     addToast({
       message: get(_)("_page.login.loginErrorMessage"),

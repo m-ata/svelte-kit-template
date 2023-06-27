@@ -46,7 +46,7 @@
 </section>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="overlay" on:click={modalOptions.onCancel} />
+<nav class="overlay" on:click={modalOptions.onCancel} />
 
 <style lang="scss">
   @import "./style.scss";

@@ -54,6 +54,7 @@
 	"_common.confirmation.deleteText": "Are you sure you want to delete this {deleteType}",
 	"_common.confirmation.heading": "Confirmation",
 	"_common.confirmation.button.yes": "Yes",
-	"_common.confirmation.button.no": "No"
+	"_common.confirmation.button.no": "No",
+	"_common.noDataFound": "No data found!"
 
 }

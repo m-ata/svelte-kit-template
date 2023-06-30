@@ -54,5 +54,6 @@
 	"_common.confirmation.deleteText": "Sind Sie sicher, dass Sie diesen {deleteType} löschen möchten?",
 	"_common.confirmation.heading": "Bestätigung",
 	"_common.confirmation.button.yes": "Ja",
-	"_common.confirmation.button.no": "NEIN"
+	"_common.confirmation.button.no": "NEIN",
+	"_common.noDataFound": "Keine Daten gefunden!"
 }

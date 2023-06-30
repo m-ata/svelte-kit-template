@@ -54,6 +54,6 @@
 	"_common.confirmation.deleteText": "Er du sikker på at du vil slette denne {deleteType}",
 	"_common.confirmation.heading": "Bekreftelse",
 	"_common.confirmation.button.yes": "Ja",
-	"_common.confirmation.button.no": "Nei"
-	
+	"_common.confirmation.button.no": "Nei",
+	"_common.noDataFound": "Ingen data funnet!"
 }

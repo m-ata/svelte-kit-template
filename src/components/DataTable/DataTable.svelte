@@ -7,6 +7,7 @@
   import Pagination from "../Pagination/Pagination.svelte";
   import arrowUp from '$lib/images/icons/arrow-up.svg';
   import arrowDown from '$lib/images/icons/arrow-down.svg';
+  import noData from '$lib/images/icons/no-data.svg';
   // props
   export let columns: any[];
   export let data: any[];
@@ -144,6 +145,12 @@
           {/if}
         </tbody>
       </table>
+      {#if filteredData?.length === 0}
+        <div class="no-data">
+          <img src={noData} alt="no-data" />
+          <span> {$_("_common.noDataFound")} </span>
+        </div>
+      {/if}
     </div>
     <Pagination
       option={paginationOption}

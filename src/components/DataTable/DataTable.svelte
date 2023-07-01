@@ -130,7 +130,7 @@
                         {#each column.buttons as button}
                           <button
                             type="button"
-                            class="icon"
+                            class={`icon ${button.type}`}
                             on:click={clickHandlers[button.type](row)}
                           >
                             <img src={button.icon} alt={button.type} />

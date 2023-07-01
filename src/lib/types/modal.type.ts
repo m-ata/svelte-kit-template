@@ -6,6 +6,7 @@ export type ModalOptions = {
     onCancel: any;
     cancelBtnText?: string;
     confirmBtnText?: string;
+    style?: string;
 }
 
 export type FormModalOptions = {

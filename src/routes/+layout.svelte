@@ -122,6 +122,8 @@
     max-width: 64rem;
     margin: 0 auto;
     box-sizing: border-box;
+    z-index: 99;
+    border-left: 2px solid rgb(226, 232, 240);
 
     &.logged-in-layout {
       width: calc(100vw - 100px) !important;

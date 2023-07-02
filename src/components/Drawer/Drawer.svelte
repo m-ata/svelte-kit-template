@@ -20,12 +20,12 @@
       }),
     },
     {
-      label: $_("_component.drawer.menu.stay"),
+      label: $_("_component.drawer.menu.stays"),
       icon: calender,
       route: "/stay",
       onClick: () => activeTabConfig.set({
         tab: 'stays',
-        tabName: $_("_component.drawer.menu.stay"),
+        tabName: $_("_component.drawer.menu.stays"),
         total: $stays?.length || 0
       }),
     },

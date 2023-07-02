@@ -8,6 +8,7 @@
   import type { ModalOptions } from "$lib/types/modal.type";
 
   let isLogoutModalOpen: boolean = false;
+  let mouseEnter: boolean = false;
 
   const logoutModalOptions = {
     heading: $_("_component.modal.logout.heading"),
@@ -22,15 +23,20 @@
     cancelBtnText: $_("_common.confirmation.button.no"),
     confirmBtnText: $_("_common.confirmation.button.yes"),
   } as ModalOptions;
+
+  // mouse event handler for work around of z-index
+  const mouseHandler = (isEnter: boolean): any => {
+    mouseEnter = isEnter;
+  }
 </script>
 
-<header>
+<header class={(isLogoutModalOpen || mouseEnter) ? 'z-100' : ''}>
   <div class="logo">
     <img src={logo} alt="SvelteKit" />
   </div>
 
   <div>
-    <LanguageDropDown />
+    <LanguageDropDown mouseHandler={mouseHandler} />
 
     <button
       type="button"

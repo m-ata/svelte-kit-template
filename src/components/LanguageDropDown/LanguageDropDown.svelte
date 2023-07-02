@@ -6,6 +6,8 @@
   // component state
   let selectedLang = '';
 
+  export let mouseHandler: any;
+
   language.subscribe(lang => {
     selectedLang = lang
   })
@@ -14,7 +16,10 @@
 <div class="sl-nav">
   <img src={`src/lib/images/flags/${selectedLang}.svg`} alt="flag" />
   <ul>
-    <li>
+    <li 
+      on:mouseenter={() => mouseHandler(true)} 
+      on:mouseleave={() => mouseHandler(false)}
+    >
       <b> {$_(`_common.language.${selectedLang}`)} </b> <i class="fa fa-angle-down" aria-hidden="true" />
       <div class="triangle" />
       <ul>

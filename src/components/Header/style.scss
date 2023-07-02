@@ -5,6 +5,10 @@ header {
   position: sticky;
   z-index: 99;
 
+  &.z-100 {
+    z-index: 100 !important;
+  }
+
   .logo {
     width: 3.5em;
     height: 3.5em;

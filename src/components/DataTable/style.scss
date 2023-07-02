@@ -98,8 +98,13 @@
           width: 30px;
           height: 30px;
 
+          &.delete {
+            border: 2px solid #a60e00;
+          }
+
           &:hover {
-            color: rgb(0, 67, 133);
+            font-size: 6em;
+            transition: 1s ease-out;
           }
 
           img {

@@ -6,7 +6,7 @@
   import { stays } from "$lib/store/stay.store";
   import type { TStay, TStayDataTable } from "$lib/types/stay.type";
   import { getColumns } from "$lib/utils/columns.util";
-  import Modal from "../../components/ConfirmModal/ConfirmModal.svelte";
+  import ConfirmationModal from "../../components/ConfirmModal/ConfirmModal.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
   import { DELETE_API } from "$lib/constants";
   import { stayApiHandler } from "$lib/api/stay";
@@ -53,6 +53,11 @@
     onCancel: () => (isDeleteStayModalOpen = false),
     cancelBtnText: $_("_common.confirmation.button.no"),
     confirmBtnText: $_("_common.confirmation.button.yes"),
+    style: `
+      left: 25%;
+      top: calc(50vh - 200px);
+      margin: 0;
+    `
   } as ModalOptions;
 
   const handlers = {
@@ -89,6 +94,6 @@
 <div>
   <DataTable columns={getColumns("stay")} bind:data clickHandlers={handlers} />
   {#if isDeleteStayModalOpen}
-    <Modal modalOptions={deleteModalOptions} />
+    <ConfirmationModal modalOptions={deleteModalOptions} />
   {/if}
 </div>

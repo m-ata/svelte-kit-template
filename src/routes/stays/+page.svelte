@@ -11,10 +11,12 @@
   import { DELETE_API } from "$lib/constants";
   import { stayApiHandler } from "$lib/api/stay";
   import { fetchData } from "$lib/api/api";
+  import { setTabConfig } from "$lib/utils/tabs-config.util";
 
   // fetching data on onMount
   onMount(async () => {
     fetchData(true);
+    setTabConfig('/stays');
   });
   //component states
   let data: TStay[] = $stays;

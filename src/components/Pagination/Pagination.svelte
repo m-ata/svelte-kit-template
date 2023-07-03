@@ -63,7 +63,7 @@
   </div>
 
   <div class="item-count">
-    <span> {option.page} / {Math.ceil(option.total)} </span>
+    <span> {option.page} / {Math.ceil(option.total) || 1} </span>
   </div>
 
   <div class="pagination">

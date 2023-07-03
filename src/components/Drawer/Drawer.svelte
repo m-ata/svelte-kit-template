@@ -4,40 +4,27 @@
   import calender from "$lib/images/icons/calender.svg";
   import users from "$lib/images/icons/users.svg";
   import type { TDrawerMenu } from "$lib/types/common.type";
-  import { activeTabConfig } from "$lib/store/active-tab-config.store";
-  import { stays } from "$lib/store/stay.store";
   import { page } from "$app/stores";
+  import { setTabConfig } from "$lib/utils/tabs-config.util";
 
   let menu: TDrawerMenu[] = [
     {
       label: $_("_component.drawer.menu.dashboard"),
       icon: chart,
       route: "/dashboard",
-      onClick: () => activeTabConfig.set({
-        tab: 'dashboard',
-        tabName: $_("_component.drawer.menu.dashboard"),
-        total: 0
-      }),
+      onClick: () => setTabConfig('/dashboard'),
     },
     {
       label: $_("_component.drawer.menu.stay"),
       icon: calender,
-      route: "/stay",
-      onClick: () => activeTabConfig.set({
-        tab: 'stays',
-        tabName: $_("_component.drawer.menu.stay"),
-        total: $stays?.length || 0
-      }),
+      route: "/stays",
+      onClick: () => setTabConfig('/stays'),
     },
     {
       label: $_("_component.drawer.menu.users"),
       icon: users,
       route: "/users",
-      onClick: () => activeTabConfig.set({
-        tab: 'users',
-        tabName: $_("_component.drawer.menu.users"),
-        total: 0
-      }),
+      onClick: () => setTabConfig('/users'),
     },
   ];
 

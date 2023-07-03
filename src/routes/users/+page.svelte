@@ -17,6 +17,7 @@
   import emailIcon from "$lib/images/icons/email.svg";
   import phoneIcon from "$lib/images/icons/phone.svg";
   import lockIcon from "$lib/images/icons/lock.svg";
+  import { setTabConfig } from "$lib/utils/tabs-config.util";
 
   // component states
   let data: TUser[] = $users;
@@ -183,6 +184,7 @@
 
   onMount(async () => {
     fetchData(true);
+    setTabConfig('/users');
   });
 
   const refreshUsers = () => fetchData(true);

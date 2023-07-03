@@ -19,7 +19,16 @@
 <section>
   <div>
     <h1>
-      {tabConfig.tabName}
+      {#if tabConfig.tab === 'stays'}
+        {$_("_component.drawer.menu.stays")}
+      {/if}
+      {#if tabConfig.tab === 'dashboard'}
+        {$_("_component.drawer.menu.dashboard")}
+      {/if}
+      {#if tabConfig.tab === 'users'}
+        {$_("_component.drawer.menu.users")}
+      {/if}
+      
       {#if tabConfig.total}
         <span> ( {tabConfig.total} ) </span>
       {/if}

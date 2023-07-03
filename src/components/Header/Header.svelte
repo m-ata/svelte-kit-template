@@ -6,8 +6,10 @@
   import Modal from "../ConfirmModal/ConfirmModal.svelte";
   import LanguageDropDown from "./../LanguageDropDown/LanguageDropDown.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
+  import { user } from "$lib/store/authStore";
 
   let isLogoutModalOpen: boolean = false;
+  let mouseEnter: boolean = false;
 
   const logoutModalOptions = {
     heading: $_("_component.modal.logout.heading"),
@@ -15,30 +17,40 @@
     content: `<p style='font-size: large; font-weight: 500'> ${$_(
       "_component.modal.logout.button.confirmText"
     )} </p>`,
-    onConfirm: () => logout(),
+    onConfirm: async () => {
+      await logout();
+      isLogoutModalOpen = false;
+    },
     onCancel: () => {
       isLogoutModalOpen = false;
     },
     cancelBtnText: $_("_common.confirmation.button.no"),
     confirmBtnText: $_("_common.confirmation.button.yes"),
   } as ModalOptions;
+
+  // mouse event handler for work around of z-index
+  const mouseHandler = (isEnter: boolean): any => {
+    mouseEnter = isEnter;
+  };
 </script>
 
-<header>
+<header class={isLogoutModalOpen || mouseEnter ? "z-100" : ""}>
   <div class="logo">
-    <img src={logo} alt="SvelteKit" />
+    <img src={logo} alt="Svelekit Logo" />
   </div>
 
-  <div>
-    <LanguageDropDown />
+  <div class="nav-right-item">
+    <LanguageDropDown {mouseHandler} />
 
-    <button
-      type="button"
-      class="logout-btn"
-      on:click={() => (isLogoutModalOpen = true)}
-    >
-      <img src={logoutImg} alt="Logout" />
-    </button>
+    {#if $user.loggedIn}
+      <button
+        type="button"
+        class="logout-btn"
+        on:click={() => (isLogoutModalOpen = true)}
+      >
+        <img src={logoutImg} alt="Logout" />
+      </button>
+    {/if}
   </div>
 
   {#if isLogoutModalOpen}

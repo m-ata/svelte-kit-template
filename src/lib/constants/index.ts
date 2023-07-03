@@ -18,7 +18,7 @@ export const STAY_COLUMNS = [
   {
     name: "_page.stay.table.header.arrival",
     field: "startDate",
-    type: "text",
+    type: "date",
     sort: {
       isSortable: true,
       isSortActive: true,
@@ -28,7 +28,7 @@ export const STAY_COLUMNS = [
   {
     name: "_page.stay.table.header.departure",
     field: "endDate",
-    type: "text",
+    type: "date",
     sort: {
       isSortable: true,
       sortType: "asc",

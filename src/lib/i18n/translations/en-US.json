@@ -42,7 +42,7 @@
 	"_component.modal.user.form.field.userName": "User Name",
 	"_component.modal.user.form.field.password": "Password",
 	"_component.drawer.menu.dashboard": "Dashboard",
-	"_component.drawer.menu.stay": "Stays",
+	"_component.drawer.menu.stays": "Stays",
 	"_component.drawer.menu.users": "Users",
 	"_common.language.en": "English",
 	"_common.language.de": "Deutsch",
@@ -56,5 +56,4 @@
 	"_common.confirmation.button.yes": "Yes",
 	"_common.confirmation.button.no": "No",
 	"_common.noDataFound": "No data found!"
-
 }

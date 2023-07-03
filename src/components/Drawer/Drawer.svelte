@@ -15,7 +15,7 @@
       onClick: () => setTabConfig('/dashboard'),
     },
     {
-      label: $_("_component.drawer.menu.stay"),
+      label: $_("_component.drawer.menu.stays"),
       icon: calender,
       route: "/stays",
       onClick: () => setTabConfig('/stays'),

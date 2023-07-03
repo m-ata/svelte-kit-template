@@ -3,7 +3,7 @@
   export let modalOptions: ModalOptions;
 </script>
 
-<section class="modal">
+<section class="modal" style={modalOptions?.style || ''}>
   {#if modalOptions?.heading || modalOptions.icon}
     <div class="header">
       <div class="row">
@@ -46,7 +46,7 @@
 </section>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<nav class="overlay" on:click={modalOptions.onCancel} />
+<div class="overlay" on:click={modalOptions.onCancel} />
 
 <style lang="scss">
   @import "./style.scss";

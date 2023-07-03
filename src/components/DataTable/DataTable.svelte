@@ -8,6 +8,7 @@
   import arrowUp from '$lib/images/icons/arrow-up.svg';
   import arrowDown from '$lib/images/icons/arrow-down.svg';
   import noData from '$lib/images/icons/no-data.svg';
+  import { parseDateInputFormat } from "$lib/utils/date-parser.util";
   // props
   export let columns: any[];
   export let data: any[];
@@ -123,6 +124,9 @@
                       {#if column?.type === "text"}
                         <span> {row[column.field]} </span>
                       {/if}
+                      {#if column?.type === "date"}
+                        <span> {parseDateInputFormat(row[column.field])} </span>
+                      {/if}
                       {#if column?.type === "checkbox"}
                         <input class="checkbox" checked={row[column.field]} type="checkbox" on:change={event => clickHandlers.selection(row, event?.target)} />
                       {/if}
@@ -130,7 +134,7 @@
                         {#each column.buttons as button}
                           <button
                             type="button"
-                            class="icon"
+                            class={`icon ${button.type}`}
                             on:click={clickHandlers[button.type](row)}
                           >
                             <img src={button.icon} alt={button.type} />

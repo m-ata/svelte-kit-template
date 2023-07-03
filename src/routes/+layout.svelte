@@ -83,8 +83,8 @@
       </div>
     {/if}
     <div class="app">
+      <Header />
       {#if $user.loggedIn}
-        <Header />
         <Drawer />
       {/if}
 
@@ -117,11 +117,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     width: 100%;
     max-width: 64rem;
     margin: 0 auto;
     box-sizing: border-box;
+    z-index: 99;
 
     &.logged-in-layout {
       width: calc(100vw - 100px) !important;
@@ -131,24 +131,7 @@
       max-width: unset;
       margin: 0;
       padding: 0;
-    }
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-  }
-
-  footer a {
-    font-weight: bold;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 12px 0;
+      border-left: 2px solid rgb(226, 232, 240);
     }
   }
 </style>

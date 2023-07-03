@@ -2,17 +2,30 @@
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   padding: 8px;
   width: calc(100vw - 250px);
+  background: rgb(248, 250, 252);
+  align-items: center;
 
   .page-items {
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+
     select {
       min-width: 50px;
       border-radius: 5px;
       height: 24px;
       width: 75px;
-      border: 1px solid #b3acac;
+      border: 2px solid rgb(166, 182, 200);
+      background-color: rgb(241, 245, 249);
+      cursor: pointer;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 600;
 
       &:focus {
         outline: none;
@@ -21,12 +34,15 @@
   }
 
   .item-count {
-    font-size: medium;
-    font-weight: bold;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
   }
 
   .pagination {
     display: flex;
+
     button {
       width: 30px;
       height: 30px;
@@ -40,20 +56,29 @@
       line-height: 20px;
       letter-spacing: 0.1px;
       padding: 6px;
+      margin-left: 8px;
+      border: 2px solid #0054a6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:disabled {
         cursor: default;
-        background-color: transparent;
-        color: darkgray;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 8px;
+        background-color: #f1f5f9;
+        color: #a6b6c8;
+        border: 2px solid #a6b6c8;
+
+        img {
+          filter: invert(91%) sepia(4%) saturate(3222%) hue-rotate(181deg)
+            brightness(85%) contrast(80%);
+        }
       }
 
       img {
         display: flex;
         justify-content: center;
+        filter: invert(18%) sepia(88%) saturate(2732%) hue-rotate(196deg)
+          brightness(90%) contrast(104%);
       }
     }
   }

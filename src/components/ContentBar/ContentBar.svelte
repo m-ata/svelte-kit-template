@@ -11,6 +11,8 @@
     total: 0,
   };
 
+  export let clickHandlers: any = {};
+
   activeTabConfig.subscribe((config) => {
     tabConfig = config;
   });
@@ -39,7 +41,7 @@
     <Button
       buttonText={$_("_common.button.refresh")}
       icon={refreshIcon}
-      clickHandler={() => console.log("Refresh")}
+      clickHandler={clickHandlers["refresh"]}
     />
   </div>
 </section>

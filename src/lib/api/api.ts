@@ -77,7 +77,7 @@ export const fetchProtected = async ({
 export const fetchData = (isMount?: boolean) => {
   page.subscribe((p) => {
     switch (p?.route?.id) {
-      case "/stay":
+      case "/stays":
         stayApiHandler({
           fetchFunction: fetch,
           // sample payload
@@ -89,7 +89,7 @@ export const fetchData = (isMount?: boolean) => {
           endpoint: "/getStayList",
         }, isMount);
         break;
-      case "/user":
+      case "/users":
         userApiHandler({
           fetchFunction: fetch,
           endpoint: "/getUsers"

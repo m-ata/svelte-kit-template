@@ -29,10 +29,10 @@
 
     window.addEventListener("focus", () => fetchData());
 
-    window.addEventListener(`touchstart`, trackUserActivity);
-    window.addEventListener(`click`, trackUserActivity);
-    window.addEventListener(`focus`, trackUserActivity);
-    window.addEventListener(`scroll`, trackUserActivity);
+    // window.addEventListener(`touchstart`, trackUserActivity);
+    // window.addEventListener(`click`, trackUserActivity);
+    // window.addEventListener(`focus`, trackUserActivity);
+    // window.addEventListener(`scroll`, trackUserActivity);
   });
 
   const update = async () => {
@@ -63,6 +63,10 @@
     });
     userActivity.set({ lastUserActivity: Date.now() });
   };
+
+  const clickHandlers = {
+    refresh: () => fetchData()
+  }
 </script>
 
 {#if $isLoading}
@@ -90,7 +94,7 @@
 
       <main class={$user.loggedIn ? 'logged-in-layout' : ''}>
         {#if $user.loggedIn}
-          <ContentBar />
+          <ContentBar clickHandlers={clickHandlers}/>
         {/if}
 
         <slot />

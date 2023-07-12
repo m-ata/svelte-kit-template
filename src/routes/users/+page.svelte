@@ -10,10 +10,7 @@
   import { userApiHandler } from "$lib/api/user";
   import { DELETE_API, UPDATE_API, emptyUser } from "$lib/constants";
   import type { FormModalOptions, ModalOptions } from "$lib/types/modal.type";
-  import Button from "../../components/Button/Button.svelte";
   import FormModal from "../../components/FormModal/FormModal.svelte";
-  import ContentBar from "../../components/ContentBar/ContentBar.svelte";
-  import refreshIcon from "$lib/images/icons/refresh.svg";
   import emailIcon from "$lib/images/icons/email.svg";
   import phoneIcon from "$lib/images/icons/phone.svg";
   import lockIcon from "$lib/images/icons/lock.svg";
@@ -52,6 +49,10 @@
     onCancel: () => (isDeleteUserModalOpen = false),
     cancelBtnText: $_("_common.confirmation.button.no"),
     confirmBtnText: $_("_common.confirmation.button.yes"),
+    style: `
+      top: calc(50vh - 200px);
+      left: -25%;
+    `
   } as ModalOptions;
 
   let editUserModalOptions = {
@@ -121,6 +122,10 @@
     onCancel: () => (isEditUserModalOpen = false),
     cancelBtnText: $_("_common.cancelText"),
     confirmBtnText: $_("_common.applyText"),
+    style: `
+      top: calc(50vh - 235px);
+      left: -25%
+    `
   } as FormModalOptions;
 
   const handlers = {
@@ -144,7 +149,6 @@
     edit: (user: TUser) => {
       isEditUserModalOpen = true;
       selectedUser = user;
-      console.log(user);
       editUserModalOptions = {
         ...editUserModalOptions,
         form: editUserModalOptions.form.map((updatedForm) => {

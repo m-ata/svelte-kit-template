@@ -1,14 +1,15 @@
 <script lang="ts" type="module">
   import { browser } from "$app/environment";
-  import { tableA11y } from "@skeletonlabs/skeleton";
   import { _ } from "svelte-i18n";
   //custom imports
   import type { PaginationOption } from "$lib/types/data-table.type";
   import Pagination from "../Pagination/Pagination.svelte";
-  import arrowUp from '$lib/images/icons/arrow-up.svg';
-  import arrowDown from '$lib/images/icons/arrow-down.svg';
-  import noData from '$lib/images/icons/no-data.svg';
+  import arrowUp from "$lib/images/icons/arrow-up.svg";
+  import arrowDown from "$lib/images/icons/arrow-down.svg";
+  import noData from "$lib/images/icons/no-data.svg";
   import { parseDateInputFormat } from "$lib/utils/date-parser.util";
+  import tableLoader from "$lib/images/gifs/table-loader.svg";
+  import { loading } from "$lib/store/data-loader.store";
   // props
   export let columns: any[];
   export let data: any[];
@@ -21,6 +22,7 @@
     total: data?.length / 10,
     amount: [10, 25, 50],
   };
+  export let isLoading: boolean = false;
   // component state
   let filteredData: any[];
 
@@ -75,12 +77,18 @@
     handleFilterData(offset, offset + limit);
     paginationOption = { ...paginationOption, offset, page };
   };
+
 </script>
 
 {#if browser}
   <div class="container">
+    {#if JSON.parse($loading) && !filteredData.length}
+      <div class="loader">
+        <img src={tableLoader} alt="table-loader" />
+      </div>
+    {/if}
     <div class="table-container">
-      <table class="table" role="grid" use:tableA11y>
+      <table class="table" role="grid">
         <thead>
           <tr>
             {#each columns as column}
@@ -100,16 +108,15 @@
                 }}
               >
                 {#if column?.sort?.isSortable}
-                  <img 
-                    src={column.sort.sortType === "asc" ? arrowUp : arrowDown} 
-                    alt="sort-icon" 
+                  <img
+                    src={column.sort.sortType === "asc" ? arrowUp : arrowDown}
+                    alt="sort-icon"
                     class={column.sort.isSortActive ? "display-unset" : ""}
                   />
                 {/if}
                 <span>
                   {$_(column.name)}
                 </span>
-                
               </th>
             {/each}
           </tr>
@@ -128,7 +135,13 @@
                         <span> {parseDateInputFormat(row[column.field])} </span>
                       {/if}
                       {#if column?.type === "checkbox"}
-                        <input class="checkbox" checked={row[column.field]} type="checkbox" on:change={event => clickHandlers.selection(row, event?.target)} />
+                        <input
+                          class="checkbox"
+                          checked={row[column.field]}
+                          type="checkbox"
+                          on:change={(event) =>
+                            clickHandlers.selection(row, event?.target)}
+                        />
                       {/if}
                       {#if column?.type === "icon-buttons"}
                         {#each column.buttons as button}
@@ -149,7 +162,7 @@
           {/if}
         </tbody>
       </table>
-      {#if filteredData?.length === 0}
+      {#if filteredData?.length === 0 && !JSON.parse($loading)}
         <div class="no-data">
           <img src={noData} alt="no-data" />
           <span> {$_("_common.noDataFound")} </span>

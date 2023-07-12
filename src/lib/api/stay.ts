@@ -5,16 +5,19 @@ import type { TApiArgs } from "$lib/types/common.type";
 import type { TStay } from "$lib/types/stay.type";
 import { get } from "svelte/store";
 import { fetchProtected } from "./api";
+import { loading } from "$lib/store/data-loader.store";
 
 // stay api handler which will handle every stay api based on endpoint
 export const stayApiHandler = async (args: TApiArgs, isMount?: boolean) => {
   const { fetchFunction = fetch, payload, endpoint } = args;
   try {
+    loading.set("true");
     const result = await fetchProtected({
       fetchFunction: fetchFunction,
       url: `${appConfig.API_BASE_URL}${endpoint}`,
       body: payload,
     });
+    loading.set("false");
     let filteredStays;
     switch (endpoint) {
       case GET_API.STAY:
@@ -45,6 +48,7 @@ export const stayApiHandler = async (args: TApiArgs, isMount?: boolean) => {
 
     return result;
   } catch (error) {
+    loading.set("false");
     console.error(`caught error`, error);
     throw error;
   }

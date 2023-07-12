@@ -5,16 +5,19 @@ import type { TUser } from '$lib/types/user.type';
 import type { TApiArgs } from "$lib/types/common.type";
 import { DELETE_API, GET_API, UPDATE_API } from "$lib/constants";
 import { get } from "svelte/store";
+import { loading } from "$lib/store/data-loader.store";
 
 // stay api handler which will handle every stay api based on endpoint
 export const userApiHandler = async (args: TApiArgs, isMount?: boolean) => {
   const { fetchFunction = fetch, payload, endpoint } = args;
   try {
+    loading.set("true");
     const result = await fetchProtected({
       fetchFunction: fetchFunction,
       url: `${appConfig.API_BASE_URL}${endpoint}`,
       body: payload,
     });
+    loading.set("false");
     let filteredStays;
     switch (endpoint) {
       case GET_API.USER:
@@ -57,6 +60,7 @@ export const userApiHandler = async (args: TApiArgs, isMount?: boolean) => {
 
     return result;
   } catch (error) {
+    loading.set("false");
     console.error(`caught error`, error);
     throw error;
   }

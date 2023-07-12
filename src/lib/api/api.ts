@@ -73,12 +73,11 @@ export const fetchProtected = async ({
 };
 
 // generic fetch data based on current active page
-
 export const fetchData = (isMount?: boolean) => {
-  page.subscribe((p) => {
-    switch (p?.route?.id) {
-      case "/stays":
-        stayApiHandler({
+  switch (get(page).route.id) {
+    case "/stays":
+      stayApiHandler(
+        {
           fetchFunction: fetch,
           // sample payload
           payload: {
@@ -87,16 +86,20 @@ export const fetchData = (isMount?: boolean) => {
             startDate: 0,
           },
           endpoint: "/getStayList",
-        }, isMount);
-        break;
-      case "/users":
-        userApiHandler({
+        },
+        isMount
+      );
+      break;
+    case "/users":
+      userApiHandler(
+        {
           fetchFunction: fetch,
-          endpoint: "/getUsers"
-        }, isMount);
-        break;
-      default:
-        break;
-    }
-  });
+          endpoint: "/getUsers",
+        },
+        isMount
+      );
+      break;
+    default:
+      break;
+  }
 };

@@ -3,7 +3,7 @@
   export let modalOptions: FormModalOptions;
 </script>
 
-<section class="modal">
+<section class="modal" style={modalOptions.style || ''}>
   {#if modalOptions?.heading || modalOptions.icon}
     <div class="header">
       <div class="row">

@@ -1,15 +1,26 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import spinner from "$lib/images/gifs/spinner.svg";
+
   export let buttonText: string = "";
   export let icon: string = "";
   export let clickHandler: any;
+  export let isLoading: boolean = false;
 </script>
 
 <button on:click={clickHandler}>
-  {#if icon}
-    <img src={icon} alt="icon" />
+  {#if isLoading}
+    <div class="loader">
+      <img src={spinner} alt="spinner" />
+    </div>
+  {:else}
+    <span>
+      {#if icon}
+        <img src={icon} alt="icon" />
+      {/if}
+      {buttonText}
+    </span>
   {/if}
-  {buttonText}
 </button>
 
 <style lang="scss">
@@ -31,6 +42,7 @@
     cursor: pointer;
     border-radius: 6px;
     white-space: nowrap;
+    min-width: 100px;
 
     &:hover {
       background-color: rgb(0, 67, 133);

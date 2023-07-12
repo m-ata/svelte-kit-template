@@ -114,6 +114,11 @@
         padding: 12px 16px;
         pointer-events: auto;
 
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.8;
+        }
+
         &:hover {
           background-color: #004385;
         }

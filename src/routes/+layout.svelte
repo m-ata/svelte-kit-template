@@ -29,10 +29,10 @@
 
     window.addEventListener("focus", () => fetchData());
 
-    // window.addEventListener(`touchstart`, trackUserActivity);
-    // window.addEventListener(`click`, trackUserActivity);
-    // window.addEventListener(`focus`, trackUserActivity);
-    // window.addEventListener(`scroll`, trackUserActivity);
+    window.addEventListener(`touchstart`, trackUserActivity);
+    window.addEventListener(`click`, trackUserActivity);
+    window.addEventListener(`focus`, trackUserActivity);
+    window.addEventListener(`scroll`, trackUserActivity);
   });
 
   const update = async () => {

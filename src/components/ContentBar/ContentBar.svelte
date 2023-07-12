@@ -4,6 +4,7 @@
   import { _ } from "svelte-i18n";
   import { activeTabConfig } from "$lib/store/active-tab-config.store";
   import type { TActiveTabConfig } from "$lib/types/common.type";
+  import { loading } from "$lib/store/data-loader.store";
 
   let tabConfig: TActiveTabConfig = {
     tab: "",
@@ -42,6 +43,7 @@
       buttonText={$_("_common.button.refresh")}
       icon={refreshIcon}
       clickHandler={clickHandlers["refresh"]}
+      isLoading={JSON.parse($loading)}
     />
   </div>
 </section>

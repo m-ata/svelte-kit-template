@@ -55,5 +55,10 @@
 	"_common.confirmation.heading": "Bestätigung",
 	"_common.confirmation.button.yes": "Ja",
 	"_common.confirmation.button.no": "NEIN",
-	"_common.noDataFound": "Keine Daten gefunden!"
+	"_common.noDataFound": "Keine Daten gefunden!",
+	"_common.ui.fishSpecies.1022": "Dorsch",
+  "_common.ui.fishSpecies.1032": "Köhler",
+  "_common.ui.fishSpecies.1711": "Steinbeißer",
+  "_common.ui.fishSpecies.2202": "Rotbarsch",
+  "_common.ui.fishSpecies.2311": "Heilbutt"
 }

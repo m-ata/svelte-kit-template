@@ -55,5 +55,10 @@
 	"_common.confirmation.heading": "Confirmation",
 	"_common.confirmation.button.yes": "Yes",
 	"_common.confirmation.button.no": "No",
-	"_common.noDataFound": "No data found!"
+	"_common.noDataFound": "No data found!",
+	"_common.ui.fishSpecies.1022": "Cod",
+  "_common.ui.fishSpecies.1032": "Coalfish",
+  "_common.ui.fishSpecies.1711": "Wolffish",
+  "_common.ui.fishSpecies.2202": "Redfish",
+  "_common.ui.fishSpecies.2311": "Halibut"
 }

@@ -6,6 +6,7 @@ import type { TStay } from "$lib/types/stay.type";
 import { get } from "svelte/store";
 import { fetchProtected } from "./api";
 import { loading } from "$lib/store/data-loader.store";
+import { setTabConfig } from "$lib/utils/tabs-config.util";
 
 // stay api handler which will handle every stay api based on endpoint
 export const stayApiHandler = async (args: TApiArgs, isMount?: boolean) => {
@@ -33,6 +34,7 @@ export const stayApiHandler = async (args: TApiArgs, isMount?: boolean) => {
             };
           })
         );
+        setTabConfig('/stays');
         break;
       case DELETE_API.STAY:
         stays.subscribe((stayList) => {

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import "@skeletonlabs/skeleton/themes/theme-skeleton.css";
-  import "@skeletonlabs/skeleton/styles/all.css";
   import { validateUserToken } from "$lib/utils/validateToken";
   import Header from "../components/Header/Header.svelte";
   import Drawer from "../components/Drawer/Drawer.svelte";

@@ -6,6 +6,7 @@ import { refreshToken } from "./auth";
 import { page } from "$app/stores";
 import { stayApiHandler } from "./stay";
 import { userApiHandler } from "./user";
+import { metricsApiHandler } from "./metrics";
 
 // Unprotected API
 export const fetchUnprotected = async ({
@@ -82,8 +83,6 @@ export const fetchData = (isMount?: boolean) => {
           // sample payload
           payload: {
             campId: "fafafafa-b2a8-4885-bace-875199e719aa",
-            endDate: 4083077146160,
-            startDate: 0,
           },
           endpoint: "/getStayList",
         },
@@ -97,6 +96,19 @@ export const fetchData = (isMount?: boolean) => {
           endpoint: "/getUsers",
         },
         isMount
+      );
+      break;
+    case "/dashboard":
+      metricsApiHandler(
+        {
+          fetchFunction: fetch,
+          // sample payload
+          payload: {
+            campId: "fafafafa-b2a8-4885-bace-875199e719aa",
+            year: 2023
+          },
+          endpoint: "/metricsByYear",
+        },
       );
       break;
     default:

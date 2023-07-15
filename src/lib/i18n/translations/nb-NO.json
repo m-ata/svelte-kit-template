@@ -55,5 +55,10 @@
 	"_common.confirmation.heading": "Bekreftelse",
 	"_common.confirmation.button.yes": "Ja",
 	"_common.confirmation.button.no": "Nei",
-	"_common.noDataFound": "Ingen data funnet!"
+	"_common.noDataFound": "Ingen data funnet!",
+	"_common.ui.fishSpecies.1022": "Torsk",
+  "_common.ui.fishSpecies.1032": "Sei",
+  "_common.ui.fishSpecies.1711": "Steinbit",
+  "_common.ui.fishSpecies.2202": "Uer",
+  "_common.ui.fishSpecies.2311": "Kveite"
 }

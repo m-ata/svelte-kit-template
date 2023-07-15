@@ -1,5 +1,6 @@
 import editIcon from '$lib/images/icons/edit.svg';
 import deleteIcon from '$lib/images/icons/delete.svg';
+import type { TFishColor } from '$lib/types/stats.type';
 
 export const publicRoutes = ["/login"];
 export const privateRoutes = ["/dashboard", "/stay", "/user"];
@@ -144,3 +145,11 @@ export const emptyUser = {
   userId: '',
   userName: '',
 }
+
+export const FISH_COLORS: TFishColor = {
+  1022: "#d8bf8e",
+  1711: "#d8d8d8",
+  2311: "#757575",
+  2202: "#e36b66",
+  1032: "#2a5453",
+};

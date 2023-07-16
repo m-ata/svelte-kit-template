@@ -6,7 +6,7 @@
   import Modal from "../ConfirmModal/ConfirmModal.svelte";
   import LanguageDropDown from "./../LanguageDropDown/LanguageDropDown.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
-  import { user } from "$lib/store/authStore";
+  import { user } from "$lib/store/auth.store";
 
   let isLogoutModalOpen: boolean = false;
   let mouseEnter: boolean = false;

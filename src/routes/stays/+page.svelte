@@ -9,7 +9,7 @@
   import ConfirmationModal from "../../components/ConfirmModal/ConfirmModal.svelte";
   import type { ModalOptions } from "$lib/types/modal.type";
   import { DELETE_API } from "$lib/constants";
-  import { stayApiHandler } from "$lib/api/stay";
+  import { staysApiHandler } from "$lib/api/stays";
   import { fetchData } from "$lib/api/api";
   import { setTabConfig } from "$lib/utils/tabs-config.util";
 
@@ -43,7 +43,7 @@
           (stay: TStay) => stay.code === selectedStay?.code
         ) || { campId: "", startDate: 0, endDate: 0 };
         if (stay?.stayId)
-          stayApiHandler({
+          staysApiHandler({
             fetchFunction: fetch,
             payload: stay,
             endpoint: DELETE_API.STAY,

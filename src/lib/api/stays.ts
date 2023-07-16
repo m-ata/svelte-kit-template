@@ -1,14 +1,15 @@
 import { appConfig } from "$lib/config";
-import { fetchProtected } from "$lib/api/api";
-import { users } from "$lib/store/user.store";
-import type { TUser } from '$lib/types/user.type';
+import { DELETE_API, GET_API } from "$lib/constants";
+import { stays } from "$lib/store/stay.store";
 import type { TApiArgs } from "$lib/types/common.type";
-import { DELETE_API, GET_API, UPDATE_API } from "$lib/constants";
+import type { TStay } from "$lib/types/stay.type";
 import { get } from "svelte/store";
+import { fetchProtected } from "./api";
 import { loading } from "$lib/store/data-loader.store";
+import { setTabConfig } from "$lib/utils/tabs-config.util";
 
 // stay api handler which will handle every stay api based on endpoint
-export const userApiHandler = async (args: TApiArgs, isMount?: boolean) => {
+export const staysApiHandler = async (args: TApiArgs, isMount?: boolean) => {
   const { fetchFunction = fetch, payload, endpoint } = args;
   try {
     loading.set("true");
@@ -20,39 +21,28 @@ export const userApiHandler = async (args: TApiArgs, isMount?: boolean) => {
     loading.set("false");
     let filteredStays;
     switch (endpoint) {
-      case GET_API.USER:
-        users.set(
-          result?.map((resItem: TUser) => {
+      case GET_API.STAY:
+        stays.set(
+          result.map((resItem: TStay) => {
             return {
               ...resItem,
               isSelected: isMount
                 ? false
-                : get(users).find(
-                    (foundItem: TUser) => foundItem.userId === resItem.userId
+                : get(stays).find(
+                    (foundItem: TStay) => foundItem.stayId === resItem.stayId
                   )?.isSelected ?? false,
             };
           })
         );
+        setTabConfig('/stays');
         break;
-      case DELETE_API.USER:
-        users.subscribe((stayList) => {
+      case DELETE_API.STAY:
+        stays.subscribe((stayList) => {
           filteredStays = stayList?.filter(
-            (user: TUser) => user.userId !== payload.userId
+            (stay: TStay) => stay.stayId !== payload.stayId
           );
         });
-        users.set(filteredStays);
-        break;
-      case UPDATE_API.USER:
-        users.subscribe((stayList) => {
-          filteredStays = stayList?.map(
-            (user: TUser) => {
-              return (user.userId === payload.userId) ? payload : {
-                ...user,
-              }
-            }
-          );
-        });
-        users.set(filteredStays);
+        stays.set(filteredStays);
         break;
       default:
         break;

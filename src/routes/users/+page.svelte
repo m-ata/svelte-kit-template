@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/api";
   import ConfirmationModal from "../../components/ConfirmModal/ConfirmModal.svelte";
-  import { userApiHandler } from "$lib/api/user";
+  import { usersApiHandler } from "$lib/api/users";
   import { DELETE_API, UPDATE_API, emptyUser } from "$lib/constants";
   import type { FormModalOptions, ModalOptions } from "$lib/types/modal.type";
   import FormModal from "../../components/FormModal/FormModal.svelte";
@@ -37,7 +37,7 @@
           (user: TUser) => user.userId === selectedUser?.userId
         );
         if (user?.userId)
-          userApiHandler({
+          usersApiHandler({
             fetchFunction: fetch,
             payload: user,
             endpoint: DELETE_API.USER,
@@ -112,7 +112,7 @@
         (selectedUser as any)["userPassword"] = json["userPassword"];
       }
       // calling api
-      userApiHandler({
+      usersApiHandler({
         fetchFunction: fetch,
         payload: selectedUser,
         endpoint: UPDATE_API.USER,

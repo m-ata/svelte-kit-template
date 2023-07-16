@@ -1,7 +1,7 @@
-import type { TokenPayload } from "$lib/types";
+import type { TokenPayload } from "$lib/types/token.type";
 import { get } from "svelte/store";
 import { fetchProtected, fetchUnprotected } from "./api";
-import { user } from "$lib/store/authStore";
+import { user } from "$lib/store/auth.store";
 import { users } from "$lib/store/user.store";
 import { stays } from "$lib/store/stay.store";
 import { tick } from "svelte/internal";

@@ -1,11 +1,11 @@
-import type { FetchUnProtectedPayload } from "$lib/types";
+import type { FetchUnProtectedPayload } from "$lib/types/token.type";
 import { browser } from "$app/environment";
-import { user } from "$lib/store/authStore";
+import { user } from "$lib/store/auth.store";
 import { get } from "svelte/store";
 import { refreshToken } from "./auth";
 import { page } from "$app/stores";
-import { stayApiHandler } from "./stay";
-import { userApiHandler } from "./user";
+import { staysApiHandler } from "./stays";
+import { usersApiHandler } from "./users";
 import { metricsApiHandler } from "./metrics";
 
 // Unprotected API
@@ -77,7 +77,7 @@ export const fetchProtected = async ({
 export const fetchData = (isMount?: boolean) => {
   switch (get(page).route.id) {
     case "/stays":
-      stayApiHandler(
+      staysApiHandler(
         {
           fetchFunction: fetch,
           // sample payload
@@ -90,7 +90,7 @@ export const fetchData = (isMount?: boolean) => {
       );
       break;
     case "/users":
-      userApiHandler(
+      usersApiHandler(
         {
           fetchFunction: fetch,
           endpoint: "/getUsers",

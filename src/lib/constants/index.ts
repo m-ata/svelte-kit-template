@@ -4,6 +4,7 @@ import type { TFishColor } from '$lib/types/stats.type';
 
 export const publicRoutes = ["/login"];
 export const privateRoutes = ["/dashboard", "/stay", "/user"];
+export const DEFAULT_ROUTE = "/dashboard";
 export const NEXT_PREV_TYPE = {
   FIRST: "first",
   PREVIOUS: 'previous',

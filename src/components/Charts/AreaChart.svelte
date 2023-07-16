@@ -8,7 +8,7 @@
   import type { TStats } from "$lib/types/stats.type";
   import { FISH_COLORS } from "$lib/constants";
 
-  const data: TStats = $stats as TStats;
+  const data: TStats = typeof $stats === 'string' ? JSON.parse($stats) : $stats as TStats;
 
   const chartData = {
     labels: data.labels,

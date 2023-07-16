@@ -2,10 +2,10 @@
   import loader from "$lib/images/gifs/loader.svg";
   import { fetchToken } from "$lib/api/auth";
   import { goto } from "$app/navigation";
-  import { user } from "$lib/store/authStore";
+  import { user } from "$lib/store/auth.store";
   import { get } from "svelte/store";
-  import type { TokenPayload } from "$lib/types";
-  import { addToast } from "$lib/store/toastStore";
+  import type { TokenPayload } from "$lib/types/token.type";
+  import { addToast } from "$lib/store/toast.store";
   import { _ } from "svelte-i18n";
   import { activeTabConfig } from "$lib/store/active-tab-config.store";
 

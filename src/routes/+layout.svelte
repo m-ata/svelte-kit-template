@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { validateUserToken } from "$lib/utils/validateToken";
+  import { validateUserToken } from "$lib/utils/validate-token";
   import Header from "../components/Header/Header.svelte";
   import Drawer from "../components/Drawer/Drawer.svelte";
   import ContentBar from "../components/ContentBar/ContentBar.svelte";
   import Loader from "../components/Loader/Loader.svelte";
   import "./styles.scss";
   import { onMount, afterUpdate } from "svelte";
-  import { user } from "$lib/store/authStore";
+  import { user } from "$lib/store/auth.store";
 
   import "$lib/i18n";
-  import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toastStore";
+  import { MAX_TOAST, dismissToast, toasts } from "$lib/store/toast.store";
   import Toast from "../components/Toast/Toast.svelte";
   import { _, isLoading } from "svelte-i18n";
   import { userActivity } from "$lib/store/user-activity.store";

@@ -8,6 +8,7 @@
   import { addToast } from "$lib/store/toastStore";
   import { _ } from "svelte-i18n";
   import { activeTabConfig } from "$lib/store/active-tab-config.store";
+  import { DEFAULT_ROUTE } from "$lib/constants";
 
   let isRequestPending: boolean = false;
 
@@ -19,23 +20,33 @@
     try {
       isRequestPending = true;
       const token = await fetchToken(json as TokenPayload);
-      user.set({
-        token: token,
-        loggedIn: true,
-      });
       isRequestPending = false;
-      addToast({
-        message: get(_)("_page.login.success"),
-        type: "success",
-        dismissible: true,
-        timeout: 3000,
-      });
-      goto("/dashboard");
-      activeTabConfig.set({
-        tab: "dashboard",
-        tabName: get(_)("_component.drawer.menu.dashboard"),
-        total: 0,
-      });
+      if (token?.access_token) {
+        user.set({
+          token: token,
+          loggedIn: true,
+        });
+
+        addToast({
+          message: get(_)("_page.login.success"),
+          type: "success",
+          dismissible: true,
+          timeout: 3000,
+        });
+        goto(DEFAULT_ROUTE);
+        activeTabConfig.set({
+          tab: "dashboard",
+          tabName: get(_)("_component.drawer.menu.dashboard"),
+          total: 0,
+        });
+      } else {
+        addToast({
+          message: get(_)("_page.login.loginErrorMessage"),
+          type: "error",
+          dismissible: true,
+          timeout: 3000,
+        });
+      }
     } catch {
       isRequestPending = false;
       addToast({
@@ -84,7 +95,11 @@
           {$_("_page.login.label.forgetPassword")}
         </a>
 
-        <button class={`submit-btn ${isRequestPending ? 'disabled' : ''}`} type="submit" name="submit">
+        <button
+          class={`submit-btn ${isRequestPending ? "disabled" : ""}`}
+          type="submit"
+          name="submit"
+        >
           {#if isRequestPending}
             <img src={loader} alt="loader" />
           {:else}
